@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="载入引擎" />
+
+    <EditText
+        android:id="@+id/et_keywords"
+        android:text="钢铁侠"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入搜索关键词" />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="搜索" />
+
+    <EditText
+        android:id="@+id/et_link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入详情页链接" />
+
+    <Button
+        android:id="@+id/btn_parse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解析" />
+</LinearLayout>
