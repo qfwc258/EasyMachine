@@ -3,29 +3,13 @@ package com.walixiwa.easy.machine;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.walixiwa.easy.machine.model.BaseDetailModel;
-import com.walixiwa.easy.machine.model.BaseResultModel;
 import com.walixiwa.easy.machine.model.BaseRuleModel;
 import com.walixiwa.easy.machine.model.BaseVodModel;
+import com.walixiwa.easy.machine.util.MutliRequest;
 import com.walixiwa.easy.machine.util.NativeDecoder;
-import com.yanzhenjie.kalle.Kalle;
-import com.yanzhenjie.kalle.KalleConfig;
-import com.yanzhenjie.kalle.exception.ConnectTimeoutError;
-import com.yanzhenjie.kalle.exception.HostError;
-import com.yanzhenjie.kalle.exception.NetworkError;
-import com.yanzhenjie.kalle.exception.ParseError;
-import com.yanzhenjie.kalle.exception.ReadTimeoutError;
-import com.yanzhenjie.kalle.exception.URLError;
-import com.yanzhenjie.kalle.exception.WriteException;
-import com.yanzhenjie.kalle.simple.SimpleCallback;
-import com.yanzhenjie.kalle.simple.SimpleResponse;
-import com.yanzhenjie.kalle.simple.SimpleUrlRequest;
 
-import java.net.Proxy;
-import java.nio.charset.Charset;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,72 +40,30 @@ public class Parser {
 
     public void start() {
         //设置返回编码
-        KalleConfig.Builder builder = KalleConfig.newBuilder();
-        builder.proxy(Proxy.NO_PROXY);
-        builder.connectionTimeout(5, TimeUnit.SECONDS);
-        builder.readTimeout(5, TimeUnit.SECONDS);
+        MutliRequest request = new MutliRequest();
+        request.setUrl(url);
         if (!TextUtils.isEmpty(this.ruleModel.getHtmlCharset())) {
-            builder.charset(Charset.forName(this.ruleModel.getHtmlCharset()));
+            request.setCharset(this.ruleModel.getHtmlCharset());
         }
-        Kalle.setConfig(builder.build());
-
-        SimpleUrlRequest.Api request = Kalle.get(url);
         if (!TextUtils.isEmpty(this.ruleModel.getUserAgent())) {
-            request.removeHeader("User-Agent").addHeader("User-Agent", this.ruleModel.getUserAgent());
+            request.setUserAgent(this.ruleModel.getUserAgent());
         }
-
-        request.perform(new SimpleCallback<String>() {
+        request.setCallBack(new MutliRequest.CallBack() {
             @Override
-            public void onStart() {
-                super.onStart();
-                Log.e(TAG, "onStart: " + ruleModel.getName() + " -> " + url);
+            public void onSuccess(final String response) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        parseSource(response);
+                    }
+                }).start();
             }
 
             @Override
-            public void onResponse(final SimpleResponse<String, String> response) {
-                Log.e(TAG, "onResponse: " + ruleModel.getName());
-                if (response.isSucceed()) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            parseSource(response.succeed());
-                        }
-                    }).start();
-                } else {
-                    Log.e(TAG, "onFail: " + ruleModel.getName() + " -> " + response.failed() + " -> " + url);
+            public void onFail(String fail) {
+                if(callBack!=null){
+                    callBack.onFail(fail);
                 }
-            }
-
-            @Override
-            public void onException(Exception e) {
-                super.onException(e);
-                // 判断异常类型。
-                String message;
-                if (e instanceof NetworkError) {
-                    message = "网络不可用";
-                } else if (e instanceof URLError) {
-                    message = "Url格式错误";
-                } else if (e instanceof HostError) {
-                    message = "没有找到Url指定服务器";
-                } else if (e instanceof ConnectTimeoutError) {
-                    message = "连接服务器超时，请重试";
-                } else if (e instanceof WriteException) {
-                    message = "发送数据错误，请检查网络";
-                } else if (e instanceof ReadTimeoutError) {
-                    message = "读取服务器数据超时，请检查网络";
-                } else if (e instanceof ParseError) {
-                    message = "解析数据时发生异常";
-                } else {
-                    message = "发生未知异常，请稍后重试";
-                }
-                Log.e(TAG, "onException: " + ruleModel.getName() + " -> " + message + " -> " + url);
-            }
-
-
-            @Override
-            public void onEnd() {
-                super.onEnd();
-                Log.e(TAG, "onEnd: " + ruleModel.getName() + " -> " + url);
             }
         });
     }
@@ -177,7 +119,7 @@ public class Parser {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    callBack.callBack(resultModel);
+                    callBack.onSuccess(resultModel);
                 }
             });
         }
@@ -185,7 +127,9 @@ public class Parser {
     }
 
     public interface CallBack {
-        void callBack(BaseDetailModel resultModel);
+        void onSuccess(BaseDetailModel resultModel);
+
+        void onFail(String msg);
     }
 
     /**

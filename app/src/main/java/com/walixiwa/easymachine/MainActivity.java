@@ -116,9 +116,15 @@ public class MainActivity extends AppCompatActivity {
     private void parse(String link) {
         new Parser(baseRuleModel).with(link).setCallBack(new Parser.CallBack() {
             @Override
-            public void callBack(BaseDetailModel resultModel) {
+            public void onSuccess(BaseDetailModel resultModel) {
                 Log.e("result", resultModel.toJson());
             }
+
+            @Override
+            public void onFail(String msg) {
+
+            }
+
         }).start();
     }
 }
