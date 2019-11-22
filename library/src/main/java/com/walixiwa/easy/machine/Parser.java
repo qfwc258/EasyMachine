@@ -113,7 +113,7 @@ public class Parser {
                 String find = linkMatcher.group();
                 String title = matchString(find, ruleModel.getRuleDetailTitle());
                 String link = matchString(find, ruleModel.getRuleDetailLink());
-                resultModel.getShareList().add(new BaseVodModel(title, link));
+                resultModel.getDownList().add(new BaseVodModel(title, link));
             }
         }
         if (callBack != null) {
