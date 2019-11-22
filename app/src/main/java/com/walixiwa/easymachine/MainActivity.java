@@ -90,10 +90,25 @@ public class MainActivity extends AppCompatActivity {
     private void search(String key, int page) {
         new Searcher(baseRuleModel).with(key, page).setCallback(new Searcher.Callback() {
             @Override
+            public void onStart() {
+
+            }
+
+            @Override
             public void onResult(List<BaseResultModel> results) {
                 for (int i = 0; i < results.size(); i++) {
                     Log.e("result", results.get(i).toJson());
                 }
+            }
+
+            @Override
+            public void onFail(String message) {
+
+            }
+
+            @Override
+            public void onEnd() {
+
             }
         }).start();
     }

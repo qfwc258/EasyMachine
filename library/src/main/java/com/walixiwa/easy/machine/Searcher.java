@@ -95,6 +95,9 @@ public class Searcher {
             public void onStart() {
                 super.onStart();
                 Log.e(TAG, "onStart: " + ruleModel.getName());
+                if (callback != null) {
+                    callback.onStart();
+                }
             }
 
             @Override
@@ -148,6 +151,9 @@ public class Searcher {
             public void onEnd() {
                 super.onEnd();
                 Log.e(TAG, "onEnd: " + ruleModel.getName());
+                if (callback != null) {
+                    callback.onEnd();
+                }
             }
         });
     }
@@ -203,8 +209,13 @@ public class Searcher {
 
 
     public interface Callback {
+        void onStart();
+
         void onResult(List<BaseResultModel> results);
+
         void onFail(String message);
+
+        void onEnd();
     }
 
     /**
