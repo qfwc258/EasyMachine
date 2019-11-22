@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResult(List<BaseResultModel> results) {
+                Log.e("result", "size:"+results.size());
                 for (int i = 0; i < results.size(); i++) {
                     Log.e("result", results.get(i).toJson());
                 }
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFail(String message) {
-
+                Log.e("result", message);
             }
 
             @Override
