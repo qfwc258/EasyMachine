@@ -42,6 +42,7 @@ public class Searcher {
     private Handler handler = new Handler(Looper.getMainLooper());
     private Callback callback;
     private List<BaseResultModel> resultModels = new ArrayList<>();
+    private List<String> blockWords = new ArrayList<>();
     private static final String TAG = "Searcher";
 
     public Searcher(BaseRuleModel ruleModel) {
@@ -58,6 +59,16 @@ public class Searcher {
 
     public Searcher setCallback(Callback callback) {
         this.callback = callback;
+        return this;
+    }
+
+    public Searcher addBlockWords(List<String> blockWords) {
+        this.blockWords.addAll(blockWords);
+        return this;
+    }
+
+    public Searcher addBlockWord(String blockWord) {
+        this.blockWords.add(blockWord);
         return this;
     }
 
@@ -97,6 +108,9 @@ public class Searcher {
                         }
                     }).start();
                 } else {
+                    if (callback != null) {
+                        callback.onFail("请求失败");
+                    }
                     Log.e(TAG, "onFail: " + ruleModel.getName() + " -> " + response.failed());
                 }
             }
@@ -124,6 +138,9 @@ public class Searcher {
                     message = "发生未知异常，请稍后重试";
                 }
                 Log.e(TAG, "onException: " + ruleModel.getName() + " -> " + message);
+                if (callback != null) {
+                    callback.onFail(message);
+                }
             }
 
 
@@ -149,11 +166,18 @@ public class Searcher {
             String resultList = matcher.group(); //匹配整条链接结果
             List<String> blockList = this.ruleModel.getBlockWords();//过滤排除掉的分类
             boolean blocked = false;
+            //屏蔽指定引擎的block关键词
             if (blockList != null) {
                 for (String name : blockList) {
                     if (resultList.contains(name)) {
                         blocked = true;
                     }
+                }
+            }
+            //屏蔽总block关键词
+            for (String name : blockWords) {
+                if (resultList.contains(name)) {
+                    blocked = true;
                 }
             }
             if (!blocked) {
@@ -180,6 +204,7 @@ public class Searcher {
 
     public interface Callback {
         void onResult(List<BaseResultModel> results);
+        void onFail(String message);
     }
 
     /**
