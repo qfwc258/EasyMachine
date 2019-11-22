@@ -66,6 +66,7 @@ public class Parser {
                 }
             }
         });
+        request.start();
     }
 
     private void parseSource(String html) {

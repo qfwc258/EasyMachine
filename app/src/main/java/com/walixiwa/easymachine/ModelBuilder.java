@@ -12,7 +12,7 @@ public class ModelBuilder {
         ruleModel.setBaseUrl("http://www.zuidazy1.net");
         ruleModel.setReqCharset("utf-8");
         ruleModel.setHtmlCharset("utf-8");
-        ruleModel.setSearchUrl("https://www.zuidazy1.net/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
+        ruleModel.setSearchUrl("http://www.zuidazy1.net/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
         ruleModel.setRuleResultList("<li><span class=\"tt\">.*?xing_vb5.*?</li>");
         ruleModel.setRuleResultTitle("target=\"_blank\">(.*?)</a>");
         ruleModel.setRuleResultLinkHeader("http://www.zuidazy1.net");
