@@ -61,7 +61,7 @@ public class Parser {
 
             @Override
             public void onFail(String fail) {
-                if(callBack!=null){
+                if (callBack != null) {
                     callBack.onFail(fail);
                 }
             }
@@ -75,45 +75,51 @@ public class Parser {
         resultModel.setCover(cover);
         resultModel.setDescription(matchString(html, ruleModel.getRuleDetailDesc()));
         //匹配m3u8的链接结果
-        Pattern m3u8Pattern = Pattern.compile(ruleModel.getRuleDetailListM3u8(), Pattern.CASE_INSENSITIVE);
-        Matcher m3u8Matcher = m3u8Pattern.matcher(html);
-        while (m3u8Matcher.find()) {
-            String m3u8 = m3u8Matcher.group();
-            Pattern linkPattern = Pattern.compile(ruleModel.getRuleDetailMain(), Pattern.CASE_INSENSITIVE);
-            Matcher linkMatcher = linkPattern.matcher(m3u8);
-            while (linkMatcher.find()) {
-                String find = linkMatcher.group();
-                String title = matchString(find, ruleModel.getRuleDetailTitle());
-                String link = matchString(find, ruleModel.getRuleDetailLink());
-                resultModel.getM3u8List().add(new BaseVodModel(title, link));
+        if (!TextUtils.isEmpty(ruleModel.getRuleDetailListM3u8())) {
+            Pattern m3u8Pattern = Pattern.compile(ruleModel.getRuleDetailListM3u8(), Pattern.CASE_INSENSITIVE);
+            Matcher m3u8Matcher = m3u8Pattern.matcher(html);
+            while (m3u8Matcher.find()) {
+                String m3u8 = m3u8Matcher.group();
+                Pattern linkPattern = Pattern.compile(ruleModel.getRuleDetailMain(), Pattern.CASE_INSENSITIVE);
+                Matcher linkMatcher = linkPattern.matcher(m3u8);
+                while (linkMatcher.find()) {
+                    String find = linkMatcher.group();
+                    String title = matchString(find, ruleModel.getRuleDetailTitle());
+                    String link = matchString(find, ruleModel.getRuleDetailLink());
+                    resultModel.getM3u8List().add(new BaseVodModel(title, link));
+                }
             }
         }
         //匹配分享share的链接结果
-        Pattern sharePattern = Pattern.compile(ruleModel.getRuleDetailListShare(), Pattern.CASE_INSENSITIVE);
-        Matcher shareMatcher = sharePattern.matcher(html);
-        while (shareMatcher.find()) {
-            String share = shareMatcher.group();
-            Pattern linkPattern = Pattern.compile(ruleModel.getRuleDetailMain(), Pattern.CASE_INSENSITIVE);
-            Matcher linkMatcher = linkPattern.matcher(share);
-            while (linkMatcher.find()) {
-                String find = linkMatcher.group();
-                String title = matchString(find, ruleModel.getRuleDetailTitle());
-                String link = matchString(find, ruleModel.getRuleDetailLink());
-                resultModel.getShareList().add(new BaseVodModel(title, link));
+        if (!TextUtils.isEmpty(ruleModel.getRuleDetailListShare())) {
+            Pattern sharePattern = Pattern.compile(ruleModel.getRuleDetailListShare(), Pattern.CASE_INSENSITIVE);
+            Matcher shareMatcher = sharePattern.matcher(html);
+            while (shareMatcher.find()) {
+                String share = shareMatcher.group();
+                Pattern linkPattern = Pattern.compile(ruleModel.getRuleDetailMain(), Pattern.CASE_INSENSITIVE);
+                Matcher linkMatcher = linkPattern.matcher(share);
+                while (linkMatcher.find()) {
+                    String find = linkMatcher.group();
+                    String title = matchString(find, ruleModel.getRuleDetailTitle());
+                    String link = matchString(find, ruleModel.getRuleDetailLink());
+                    resultModel.getShareList().add(new BaseVodModel(title, link));
+                }
             }
         }
         //匹配下载down的链接结果
-        Pattern downPattern = Pattern.compile(ruleModel.getRuleDetailDownList(), Pattern.CASE_INSENSITIVE);
-        Matcher downMatcher = downPattern.matcher(html);
-        while (downMatcher.find()) {
-            String down = downMatcher.group();
-            Pattern linkPattern = Pattern.compile(ruleModel.getRuleDetailMain(), Pattern.CASE_INSENSITIVE);
-            Matcher linkMatcher = linkPattern.matcher(down);
-            while (linkMatcher.find()) {
-                String find = linkMatcher.group();
-                String title = matchString(find, ruleModel.getRuleDetailTitle());
-                String link = matchString(find, ruleModel.getRuleDetailLink());
-                resultModel.getDownList().add(new BaseVodModel(title, link));
+        if (!TextUtils.isEmpty(ruleModel.getRuleDetailDownList())) {
+            Pattern downPattern = Pattern.compile(ruleModel.getRuleDetailDownList(), Pattern.CASE_INSENSITIVE);
+            Matcher downMatcher = downPattern.matcher(html);
+            while (downMatcher.find()) {
+                String down = downMatcher.group();
+                Pattern linkPattern = Pattern.compile(ruleModel.getRuleDetailMain(), Pattern.CASE_INSENSITIVE);
+                Matcher linkMatcher = linkPattern.matcher(down);
+                while (linkMatcher.find()) {
+                    String find = linkMatcher.group();
+                    String title = matchString(find, ruleModel.getRuleDetailTitle());
+                    String link = matchString(find, ruleModel.getRuleDetailLink());
+                    resultModel.getDownList().add(new BaseVodModel(title, link));
+                }
             }
         }
         if (callBack != null) {
