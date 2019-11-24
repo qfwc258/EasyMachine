@@ -10,6 +10,12 @@ import java.io.Serializable;
 public class BaseVodModel implements Serializable {
     private String name;
     private String url;
+    private boolean checked;
+
+    public BaseVodModel(String name, String url) {
+        this.name = name;
+        this.url = url;
+    }
 
     public String getName() {
         return name;
@@ -27,9 +33,12 @@ public class BaseVodModel implements Serializable {
         this.url = url;
     }
 
-    public BaseVodModel(String name, String url) {
-        this.name = name;
-        this.url = url;
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     public String toJson() {
