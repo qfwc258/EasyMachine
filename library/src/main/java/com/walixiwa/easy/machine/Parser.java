@@ -156,7 +156,7 @@ public class Parser {
         while (matcher.find()) {
             result = matcher.group(1);
         }
-        result = result == null ? "" : result.replaceAll("<.*?>", "").trim();
+        result = result == null ? "" : result.replaceAll("<.*?>", "").replaceAll("&nbsp;","").trim();
         return NativeDecoder.decode(result);
     }
 
