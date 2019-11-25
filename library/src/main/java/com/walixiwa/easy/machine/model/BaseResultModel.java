@@ -2,6 +2,9 @@ package com.walixiwa.easy.machine.model;
 
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 /**
  * 搜索结果Model
@@ -54,6 +57,44 @@ public class BaseResultModel implements Serializable {
     }
 
     public String toJson() {
-        return new Gson().toJson(this);
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("resultTitle", this.resultTitle);
+            jsonObject.put("resultLink", this.resultLink);
+            jsonObject.put("resultTime", this.resultTime);
+            jsonObject.put("resultType", this.resultType);
+            jsonObject.put("baseRuleModel", this.baseRuleModel.toBase64Linker());
+        } catch (JSONException var3) {
+            var3.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
+
+    public BaseResultModel() {
+    }
+
+    public BaseResultModel(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            this.resultTitle = this.getString(jsonObject, "resultTitle");
+            this.resultLink = this.getString(jsonObject, "resultLink");
+            this.resultType = this.getString(jsonObject, "resultType");
+            this.resultTime = this.getString(jsonObject, "resultTime");
+            this.baseRuleModel = new BaseRuleModel(getString(jsonObject, "baseRuleModel"));
+        } catch (JSONException var3) {
+            var3.printStackTrace();
+        }
+    }
+
+    private String getString(JSONObject jsonObject, String key) {
+        if (jsonObject.has(key)) {
+            try {
+                return jsonObject.getString(key);
+            } catch (JSONException var4) {
+                return "";
+            }
+        } else {
+            return "";
+        }
     }
 }
