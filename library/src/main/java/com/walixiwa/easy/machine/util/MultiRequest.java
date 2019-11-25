@@ -29,7 +29,7 @@ import okhttp3.ResponseBody;
 /**
  * 多线程网络请求队列
  */
-public class MutliRequest {
+public class MultiRequest {
     private String url;
     private String userAgent;
     private String charset;
@@ -39,23 +39,23 @@ public class MutliRequest {
     private Map<String, String> params = new HashMap<>();
     private Handler handler = new Handler(Looper.getMainLooper());
 
-    public MutliRequest setUrl(String url) {
+    public MultiRequest setUrl(String url) {
         this.url = url;
         Log.e("info", "setUrl: " + url);
         return this;
     }
 
-    public MutliRequest setUserAgent(String userAgent) {
+    public MultiRequest setUserAgent(String userAgent) {
         this.userAgent = userAgent;
         return this;
     }
 
-    public MutliRequest setCharset(String charset) {
+    public MultiRequest setCharset(String charset) {
         this.charset = charset;
         return this;
     }
 
-    public MutliRequest param(String key, String value) {
+    public MultiRequest param(String key, String value) {
         try {
             value = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20");
             this.params.put(key, value);
@@ -65,12 +65,12 @@ public class MutliRequest {
         return this;
     }
 
-    public MutliRequest setCallBack(CallBack callBack) {
+    public MultiRequest setCallBack(CallBack callBack) {
         this.callBack = callBack;
         return this;
     }
 
-    public MutliRequest setTimeOut(long timeOut) {
+    public MultiRequest setTimeOut(long timeOut) {
         this.timeOut = timeOut;
         return this;
     }

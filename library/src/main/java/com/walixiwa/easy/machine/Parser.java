@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import com.walixiwa.easy.machine.model.BaseDetailModel;
 import com.walixiwa.easy.machine.model.BaseRuleModel;
 import com.walixiwa.easy.machine.model.BaseVodModel;
-import com.walixiwa.easy.machine.util.MutliRequest;
+import com.walixiwa.easy.machine.util.MultiRequest;
 import com.walixiwa.easy.machine.util.NativeDecoder;
 
 import java.util.regex.Matcher;
@@ -40,7 +40,7 @@ public class Parser {
 
     public void start() {
         //设置返回编码
-        MutliRequest request = new MutliRequest();
+        MultiRequest request = new MultiRequest();
         request.setUrl(url);
         if (!TextUtils.isEmpty(this.ruleModel.getHtmlCharset())) {
             request.setCharset(this.ruleModel.getHtmlCharset());
@@ -48,7 +48,7 @@ public class Parser {
         if (!TextUtils.isEmpty(this.ruleModel.getUserAgent())) {
             request.setUserAgent(this.ruleModel.getUserAgent());
         }
-        request.setCallBack(new MutliRequest.CallBack() {
+        request.setCallBack(new MultiRequest.CallBack() {
             @Override
             public void onSuccess(final String response) {
                 new Thread(new Runnable() {
