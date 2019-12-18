@@ -5,7 +5,9 @@ import android.text.TextUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class BaseParseModel {
+import java.io.Serializable;
+
+public class BaseParseModel  implements Serializable {
     private String parseHeader;//解析id and地址：http://www.baidu.com/jx.php?id=%id
     private String rulePlayUrl;//<iframe src="https://g.shumafen.cn/api/file/530655cd742700ee/a606c6695f59f00a.mp4"
 
