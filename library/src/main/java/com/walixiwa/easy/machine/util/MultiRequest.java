@@ -119,10 +119,10 @@ public class MultiRequest {
                             String result = new String(bytes, TextUtils.isEmpty(charset) ? "utf-8" : charset);
                             onSuccess(callBack, result);
                         } else {
-                            onFail(callBack, "请求返回内容为空");
+                            onFail(callBack, "返回内容为空");
                         }
                     } catch (IOException e) {
-                        onFail(callBack, "发生未知异常");
+                        onFail(callBack, e.toString());
                     }
                 } else {
                     onFail(callBack, "请求失败");

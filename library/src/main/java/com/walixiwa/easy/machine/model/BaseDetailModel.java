@@ -15,6 +15,7 @@ public class BaseDetailModel implements Serializable {
     private List<BaseVodModel> m3u8List = new ArrayList<>();
     private List<BaseVodModel> shareList = new ArrayList<>();
     private List<BaseVodModel> downList = new ArrayList<>();
+    private List<BaseVodModel> parseList = new ArrayList<>();
 
     public String getCover() {
         return cover;
@@ -54,6 +55,14 @@ public class BaseDetailModel implements Serializable {
 
     public void setDownList(List<BaseVodModel> downList) {
         this.downList = downList;
+    }
+
+    public List<BaseVodModel> getParseList() {
+        return parseList;
+    }
+
+    public void setParseList(List<BaseVodModel> parseList) {
+        this.parseList = parseList;
     }
 
     public String toJson() {

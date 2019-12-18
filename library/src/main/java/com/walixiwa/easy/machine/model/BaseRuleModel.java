@@ -25,20 +25,25 @@ public class BaseRuleModel implements Serializable {
     private String searchUrl;//搜索链接：http://www.xxx.com/search.php?keyWords=%s&page=%s
     private String ruleResultList;//搜索结果列表规则 <整个匹配>
     private String ruleResultLinkHeader;//详情页链接前缀
-    private String ruleResultLink;//搜索结果详情页链接规则<需要子匹配>
+    private String ruleResultLink;//搜索结果详情页链接规则<子匹配>
     private String ruleResultTitle;//搜索结果标题<子匹配>
     private String ruleResultType;//类型<子匹配>
     private String ruleResultTime;//时间<子匹配>
-    private boolean hasNextPage = true; //是否有详情页
-    private String ruleDetailCoverHeader;//详情页图片前缀<子匹配>
+    private boolean hasNextPage = true; //是否有详情页，一般都是true
+    private String ruleDetailCoverHeader;//详情页图片前缀
     private String ruleDetailCover;//详情页图片规则<子匹配>
     private String ruleDetailDesc;//详情页简介<子匹配>
-    private String ruleDetailListM3u8;//播放地址M3U8规则<整个匹配>
-    private String ruleDetailListShare;//分享链接规则<整个匹配>
-    private String ruleDetailDownList;//下载链接规则<整个匹配>
+    private String ruleDetailListM3u8;//播放地址列表规则<整个匹配>
+    private String ruleDetailListShare;//分享链接列表规则<整个匹配>
+    private String ruleDetailDownList;//下载链接列表规则<整个匹配>
+    private String ruleDetailParseList;//下载链接列表规则<整个匹配>
     private String ruleDetailMain;//链接&标题<整个匹配>
     private String ruleDetailTitle;//链接规则<子匹配>
     private String ruleDetailLink;//标题规则<子匹配>
+
+    private boolean needParse = false;
+    private BaseParseModel parseModel;
+
     private List<String> blockWords = new ArrayList<>();//屏蔽的类型或关键字
 
     public String getName() {
@@ -201,6 +206,14 @@ public class BaseRuleModel implements Serializable {
         this.ruleDetailDownList = ruleDetailDownList;
     }
 
+    public String getRuleDetailParseList() {
+        return ruleDetailParseList;
+    }
+
+    public void setRuleDetailParseList(String ruleDetailParseList) {
+        this.ruleDetailParseList = ruleDetailParseList;
+    }
+
     public String getRuleDetailMain() {
         return ruleDetailMain;
     }
@@ -223,6 +236,22 @@ public class BaseRuleModel implements Serializable {
 
     public void setRuleDetailLink(String ruleDetailLink) {
         this.ruleDetailLink = ruleDetailLink;
+    }
+
+    public boolean isNeedParse() {
+        return needParse;
+    }
+
+    public void setNeedParse(boolean needParse) {
+        this.needParse = needParse;
+    }
+
+    public BaseParseModel getParseModel() {
+        return parseModel;
+    }
+
+    public void setParseModel(BaseParseModel parseModel) {
+        this.parseModel = parseModel;
     }
 
     public List<String> getBlockWords() {
@@ -257,9 +286,14 @@ public class BaseRuleModel implements Serializable {
             addParam(jsonObject, "ruleDetailListM3u8", ruleDetailListM3u8);
             addParam(jsonObject, "ruleDetailListShare", ruleDetailListShare);
             addParam(jsonObject, "ruleDetailDownList", ruleDetailDownList);
+            addParam(jsonObject, "ruleDetailParseList", ruleDetailParseList);
             addParam(jsonObject, "ruleDetailMain", ruleDetailMain);
             addParam(jsonObject, "ruleDetailTitle", ruleDetailTitle);
             addParam(jsonObject, "ruleDetailLink", ruleDetailLink);
+            jsonObject.put("needParse", needParse);
+            if (parseModel != null) {
+                jsonObject.put("parseModel", parseModel.toJsonObject().toString());
+            }
             if (blockWords.size() > 0) {
                 jsonObject.put("blockWords", new JSONArray(blockWords));
             }
@@ -328,9 +362,16 @@ public class BaseRuleModel implements Serializable {
             this.ruleDetailListM3u8 = getParam(jsonObject, "ruleDetailListM3u8");
             this.ruleDetailListShare = getParam(jsonObject, "ruleDetailListShare");
             this.ruleDetailDownList = getParam(jsonObject, "ruleDetailDownList");
+            this.ruleDetailParseList = getParam(jsonObject, "ruleDetailParseList");
             this.ruleDetailMain = getParam(jsonObject, "ruleDetailMain");
             this.ruleDetailTitle = getParam(jsonObject, "ruleDetailTitle");
             this.ruleDetailLink = getParam(jsonObject, "ruleDetailLink");
+            if (jsonObject.has("needParse")) {
+                this.needParse = jsonObject.getBoolean("needParse");
+            }
+            if (jsonObject.has("parseModel")) {
+                this.parseModel = new BaseParseModel(jsonObject.getString("parseModel"));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -122,6 +122,22 @@ public class Parser {
                 }
             }
         }
+        //匹配Parse的链接结果
+        if (!TextUtils.isEmpty(ruleModel.getRuleDetailParseList())) {
+            Pattern parsePattern = Pattern.compile(ruleModel.getRuleDetailParseList(), Pattern.CASE_INSENSITIVE);
+            Matcher parseMatcher = parsePattern.matcher(html);
+            while (parseMatcher.find()) {
+                String parse = parseMatcher.group();
+                Pattern linkPattern = Pattern.compile(ruleModel.getRuleDetailMain(), Pattern.CASE_INSENSITIVE);
+                Matcher linkMatcher = linkPattern.matcher(parse);
+                while (linkMatcher.find()) {
+                    String find = linkMatcher.group();
+                    String title = matchString(find, ruleModel.getRuleDetailTitle());
+                    String link = matchString(find, ruleModel.getRuleDetailLink());
+                    resultModel.getParseList().add(new BaseVodModel(title, link));
+                }
+            }
+        }
         if (callBack != null) {
             handler.post(new Runnable() {
                 @Override

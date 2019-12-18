@@ -63,18 +63,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showBuilderDialog() {
-        final String json = ModelBuilder.buildZuiDaModel().toBase64Linker();
+        final BaseRuleModel ruleModel = ModelBuilder.build1090Model();
         new AlertDialog.Builder(this)
                 .setTitle("载入引擎")
-                .setMessage(json)
+                .setMessage(ruleModel.toBase64Linker())
                 .setCancelable(false)
                 .setPositiveButton("确认载入", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        baseRuleModel = new BaseRuleModel(ModelBuilder.buildZuiDaModel().toBase64Linker());
+                        baseRuleModel = ruleModel;
                         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                         assert clipboardManager != null;
-                        clipboardManager.setPrimaryClip(ClipData.newPlainText(null, json));
+                        clipboardManager.setPrimaryClip(ClipData.newPlainText(null, ruleModel.toBase64Linker()));
                         Toast.makeText(MainActivity.this, "已复制Linker", Toast.LENGTH_SHORT).show();
                     }
                 })
