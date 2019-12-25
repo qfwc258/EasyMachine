@@ -1,6 +1,5 @@
 package com.walixiwa.easymachine;
 
-import com.walixiwa.easy.machine.model.BaseParseModel;
 import com.walixiwa.easy.machine.model.BaseRuleModel;
 
 import java.util.Arrays;
@@ -111,7 +110,7 @@ public class ModelBuilder {
     public static BaseRuleModel buildOkYunModel(){
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("Ok资源网");
-        ruleModel.setVersion("2019.11.26");
+        ruleModel.setVersion("2019.12.26");
         ruleModel.setBaseUrl("http://www.okzyw.com");
         ruleModel.setReqCharset("utf-8");
         ruleModel.setHtmlCharset("utf-8");
@@ -123,7 +122,7 @@ public class ModelBuilder {
         ruleModel.setRuleResultType("<span class=\"xing_vb5\">(.*?)</span>");
         ruleModel.setRuleResultTime("<span class=\"xing_vb6\">(.*?)</span>");
         ruleModel.setRuleDetailCover("<img class=\"lazy\" src=\"(.*?)\"");
-        ruleModel.setRuleDetailDesc("<span class=\"more\" txt=\"([\\s\\S]*?)</span>");
+        ruleModel.setRuleDetailDesc("<span class=\"more\" txt=\"[\\s\\S]*?\">([\\s\\S]*?)</span>");
         ruleModel.setRuleDetailListM3u8("<div id=\"2\">[\\s\\S]*?</ul>");
         ruleModel.setRuleDetailListShare("<div id=\"1\">[\\s\\S]*?</ul>");
         ruleModel.setRuleDetailDownList("<div id=\"down_1\">[\\s\\S]*?</ul>");
@@ -607,37 +606,32 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel build1090Model(){
+
+
+    public static BaseRuleModel buildAiMeiJuModel(){
         BaseRuleModel ruleModel = new BaseRuleModel();
-        ruleModel.setName("1090影视");
-        ruleModel.setVersion("2019.12.18");
-        ruleModel.setBaseUrl("https://1090ys1.com");
+        ruleModel.setName("爱美剧");
+        ruleModel.setVersion("2019.12.26");
+        ruleModel.setBaseUrl("http://mjapp.mjomj.com");
         ruleModel.setReqCharset("utf-8");
         ruleModel.setHtmlCharset("utf-8");
-        ruleModel.setSearchUrl("https://1090ys1.com/?c=search&wd=%keyWords");
-        ruleModel.setRuleResultList("<li class=\"activeclearfix\">[\\s\\S]*?</li>");
-        ruleModel.setRuleResultTitle("title=\"(.*?)\"");
-        ruleModel.setRuleResultLinkHeader("https://1090ys1.com");
-        ruleModel.setRuleResultLink("href=\"(.*?)\"");
-        ruleModel.setRuleResultType("类型：</span>([\\s\\S]*?)<span");
-        ruleModel.setRuleResultTime("年份：</span>([\\s\\S]*?)</p>");
+        ruleModel.setSearchUrl("http://mjapp.mjomj.com/index.php/app/ios/vod/index?size=20&page=%page&key=%keyWords");
+        ruleModel.setRuleResultList("\\{\"id\"[\\s\\S]*?\\}");
+        ruleModel.setRuleResultTitle("\"name\":\"([\\s\\S]*?)\"");
+        ruleModel.setRuleResultLinkHeader("http://mjapp.mjomj.com/index.php/app/ios/vod/show?token=&id=");
+        ruleModel.setRuleResultLink("\"id\":\"(.*?)\"");
+        ruleModel.setRuleResultType("\"type\":\"(.*?)\"");
+        ruleModel.setRuleResultTime("\"info\":\"(.*?)\"");
+        ruleModel.setRuleDetailCover("\"pic\":\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("\"text\":\"([\\s\\S]*?)\"");
+        ruleModel.setRuleDetailListM3u8("\"ji\":\\[[\\s\\S]*?\\]\\}\\]");
+        ruleModel.setRuleDetailMain("\\{\"id\":.*?\"\\}");
+        ruleModel.setRuleDetailTitle("\"name\":\"(.*?)\"");
+        ruleModel.setRuleDetailLink("\"purl\":\"(.*?)\"");
 
-        ruleModel.setRuleDetailCoverHeader("https");
-        ruleModel.setRuleDetailCover("data-original=\"(.*?)\"");
-        ruleModel.setRuleDetailDesc("<.*?detail-content.*?>(.*?)</span>");
-        ruleModel.setRuleDetailParseList("<ul.*?playlist.*?>[\\s\\S]*?</ul>");
-        ruleModel.setRuleDetailMain("<li><a title='.*?' href='.*?' target=\"_blank\">.*?</a></li>");
-        ruleModel.setRuleDetailTitle("title='(.*?)'");
-        ruleModel.setRuleDetailLink("href='(.*?)'");
-        ruleModel.setNeedParse(true);
-        BaseParseModel parseModel =new BaseParseModel();
-        parseModel.setParseHeader("https://1090ys1.com%id");
-        parseModel.setRulePlayUrl("<iframe src=\"(.*?)\"");
-        ruleModel.setParseModel(parseModel);
+        ruleModel.setBlockWords(Arrays.asList("伦理片","情色片"));
         return ruleModel;
     }
-
-
 
     public static BaseRuleModel buildAvtbModel(){
         BaseRuleModel ruleModel = new BaseRuleModel();

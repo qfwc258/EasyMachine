@@ -173,7 +173,7 @@ public class Parser {
             result = matcher.group(1);
         }
         result = result == null ? "" : result.replaceAll("<.*?>", "").replaceAll("&nbsp;","").trim();
-        return NativeDecoder.decode(result);
+        return NativeDecoder.decode(result).replaceAll("\\\\/","/");
     }
 
 

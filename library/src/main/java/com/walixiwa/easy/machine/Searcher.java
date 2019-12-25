@@ -173,7 +173,7 @@ public class Searcher {
             result = matcher.group(1);
         }
         result = result == null ? "" : result.replaceAll("<.*?>", "").trim();
-        return NativeDecoder.decode(result);
+        return NativeDecoder.decode(result).replaceAll("\\\\/","/");
     }
 
     /**

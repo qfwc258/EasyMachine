@@ -41,9 +41,6 @@ public class BaseRuleModel implements Serializable {
     private String ruleDetailTitle;//链接规则<子匹配>
     private String ruleDetailLink;//标题规则<子匹配>
 
-    private boolean needParse = false;
-    private BaseParseModel parseModel;
-
     private List<String> blockWords = new ArrayList<>();//屏蔽的类型或关键字
 
     public String getName() {
@@ -238,21 +235,7 @@ public class BaseRuleModel implements Serializable {
         this.ruleDetailLink = ruleDetailLink;
     }
 
-    public boolean isNeedParse() {
-        return needParse;
-    }
 
-    public void setNeedParse(boolean needParse) {
-        this.needParse = needParse;
-    }
-
-    public BaseParseModel getParseModel() {
-        return parseModel;
-    }
-
-    public void setParseModel(BaseParseModel parseModel) {
-        this.parseModel = parseModel;
-    }
 
     public List<String> getBlockWords() {
         return blockWords;
@@ -290,10 +273,6 @@ public class BaseRuleModel implements Serializable {
             addParam(jsonObject, "ruleDetailMain", ruleDetailMain);
             addParam(jsonObject, "ruleDetailTitle", ruleDetailTitle);
             addParam(jsonObject, "ruleDetailLink", ruleDetailLink);
-            jsonObject.put("needParse", needParse);
-            if (parseModel != null) {
-                jsonObject.put("parseModel", parseModel.toJsonObject().toString());
-            }
             if (blockWords.size() > 0) {
                 jsonObject.put("blockWords", new JSONArray(blockWords));
             }
@@ -366,12 +345,6 @@ public class BaseRuleModel implements Serializable {
             this.ruleDetailMain = getParam(jsonObject, "ruleDetailMain");
             this.ruleDetailTitle = getParam(jsonObject, "ruleDetailTitle");
             this.ruleDetailLink = getParam(jsonObject, "ruleDetailLink");
-            if (jsonObject.has("needParse")) {
-                this.needParse = jsonObject.getBoolean("needParse");
-            }
-            if (jsonObject.has("parseModel")) {
-                this.parseModel = new BaseParseModel(jsonObject.getString("parseModel"));
-            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
