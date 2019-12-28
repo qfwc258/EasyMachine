@@ -111,14 +111,14 @@ public class Searcher {
             //屏蔽指定引擎的block关键词
             if (blockList != null) {
                 for (String name : blockList) {
-                    if (resultList.contains(name)) {
+                    if (resultList.contains(name) || NativeDecoder.decode(resultList).contains(name)) {
                         blocked = true;
                     }
                 }
             }
             //屏蔽总block关键词
             for (String name : blockWords) {
-                if (resultList.contains(name)) {
+                if (resultList.contains(name) || NativeDecoder.decode(resultList).contains(name)) {
                     blocked = true;
                 }
             }
@@ -173,7 +173,7 @@ public class Searcher {
             result = matcher.group(1);
         }
         result = result == null ? "" : result.replaceAll("<.*?>", "").trim();
-        return NativeDecoder.decode(result).replaceAll("\\\\/","/");
+        return NativeDecoder.decode(result).replaceAll("\\\\/", "/");
     }
 
     /**

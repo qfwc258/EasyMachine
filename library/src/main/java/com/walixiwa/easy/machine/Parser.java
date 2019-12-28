@@ -86,6 +86,9 @@ public class Parser {
                     String find = linkMatcher.group();
                     String title = matchString(find, ruleModel.getRuleDetailTitle());
                     String link = matchString(find, ruleModel.getRuleDetailLink());
+                    if (!TextUtils.isEmpty(ruleModel.getRuleDetailLinkHeader())) {
+                        link = ruleModel.getRuleDetailLinkHeader() + link;
+                    }
                     resultModel.getM3u8List().add(new BaseVodModel(title, link));
                 }
             }
@@ -102,6 +105,9 @@ public class Parser {
                     String find = linkMatcher.group();
                     String title = matchString(find, ruleModel.getRuleDetailTitle());
                     String link = matchString(find, ruleModel.getRuleDetailLink());
+                    if (!TextUtils.isEmpty(ruleModel.getRuleDetailLinkHeader())) {
+                        link = ruleModel.getRuleDetailLinkHeader() + link;
+                    }
                     resultModel.getShareList().add(new BaseVodModel(title, link));
                 }
             }
@@ -118,13 +124,16 @@ public class Parser {
                     String find = linkMatcher.group();
                     String title = matchString(find, ruleModel.getRuleDetailTitle());
                     String link = matchString(find, ruleModel.getRuleDetailLink());
+                    if (!TextUtils.isEmpty(ruleModel.getRuleDetailLinkHeader())) {
+                        link = ruleModel.getRuleDetailLinkHeader() + link;
+                    }
                     resultModel.getDownList().add(new BaseVodModel(title, link));
                 }
             }
         }
         //匹配Parse的链接结果
-        if (!TextUtils.isEmpty(ruleModel.getRuleDetailParseList())) {
-            Pattern parsePattern = Pattern.compile(ruleModel.getRuleDetailParseList(), Pattern.CASE_INSENSITIVE);
+        if (!TextUtils.isEmpty(ruleModel.getRuleDetailListSniff())) {
+            Pattern parsePattern = Pattern.compile(ruleModel.getRuleDetailListSniff(), Pattern.CASE_INSENSITIVE);
             Matcher parseMatcher = parsePattern.matcher(html);
             while (parseMatcher.find()) {
                 String parse = parseMatcher.group();
@@ -134,7 +143,10 @@ public class Parser {
                     String find = linkMatcher.group();
                     String title = matchString(find, ruleModel.getRuleDetailTitle());
                     String link = matchString(find, ruleModel.getRuleDetailLink());
-                    resultModel.getParseList().add(new BaseVodModel(title, link));
+                    if (!TextUtils.isEmpty(ruleModel.getRuleDetailLinkHeader())) {
+                        link = ruleModel.getRuleDetailLinkHeader() + link;
+                    }
+                    resultModel.getSniffList().add(new BaseVodModel(title, link));
                 }
             }
         }
@@ -172,8 +184,8 @@ public class Parser {
         while (matcher.find()) {
             result = matcher.group(1);
         }
-        result = result == null ? "" : result.replaceAll("<.*?>", "").replaceAll("&nbsp;","").trim();
-        return NativeDecoder.decode(result).replaceAll("\\\\/","/");
+        result = result == null ? "" : result.replaceAll("<.*?>", "").replaceAll("&nbsp;", "").trim();
+        return NativeDecoder.decode(result).replaceAll("\\\\/", "/");
     }
 
 

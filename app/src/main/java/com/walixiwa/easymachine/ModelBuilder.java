@@ -622,41 +622,41 @@ public class ModelBuilder {
         ruleModel.setRuleResultLink("\"id\":\"(.*?)\"");
         ruleModel.setRuleResultType("\"type\":\"(.*?)\"");
         ruleModel.setRuleResultTime("\"info\":\"(.*?)\"");
-        ruleModel.setRuleDetailCover("\"pic\":\"(.*?)\"");
+        ruleModel.setRuleDetailCover("\"name\":\".*?\",\"pic\":\"(.*?)\"");
         ruleModel.setRuleDetailDesc("\"text\":\"([\\s\\S]*?)\"");
         ruleModel.setRuleDetailListM3u8("\"ji\":\\[[\\s\\S]*?\\]\\}\\]");
         ruleModel.setRuleDetailMain("\\{\"id\":.*?\"\\}");
         ruleModel.setRuleDetailTitle("\"name\":\"(.*?)\"");
         ruleModel.setRuleDetailLink("\"purl\":\"(.*?)\"");
 
-        ruleModel.setBlockWords(Arrays.asList("伦理片","情色片"));
+        ruleModel.setBlockWords(Arrays.asList("伦理","情色","会员"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildAvtbModel(){
+
+    public static BaseRuleModel buildWaiJuWangModel(){
         BaseRuleModel ruleModel = new BaseRuleModel();
-        ruleModel.setName("AV淘宝");
-        ruleModel.setVersion("2019.11.29");
-        ruleModel.setBaseUrl("http://www.avtb0088.com");
+        ruleModel.setName("外剧网");
+        ruleModel.setVersion("2019.12.28");
+        ruleModel.setBaseUrl("https://www.waijutv.com");
         ruleModel.setReqCharset("utf-8");
         ruleModel.setHtmlCharset("utf-8");
-        ruleModel.setSearchUrl("http://www.avtb0088.com/search/video/?s=%keyWords&page=%page");
-        ruleModel.setRuleResultList("<li id=\"video-.*?\">[\\s\\S]*?</li>");
-        ruleModel.setRuleResultTitle("<span class=\"video-title\">(.*?)</span>");
-        ruleModel.setRuleResultLinkHeader("http://www.avtb0088.com");
+        ruleModel.setSearchUrl("https://www.waijutv.com/index.php/vod/search/page/%page/wd/%keyWords/");
+        ruleModel.setRuleResultList("<li class=\"bottom-line active clearfix\">[\\s\\S]*?</li>");
+        ruleModel.setRuleResultTitle("title=\"(.*?)\"");
+        ruleModel.setRuleResultLinkHeader("https://www.waijutv.com");
         ruleModel.setRuleResultLink("href=\"(.*?)\"");
-        ruleModel.setRuleResultType("transparent\">([\\s\\S]*?)</span>");
-        ruleModel.setRuleResultTime("<span class=\"pull-left\">(.*?)</span>");
-
-        ruleModel.setRuleDetailCover("poster=\"(.*?)\"");
-        //ruleModel.setRuleDetailDesc("<meta property=\"og:title\" content=\"(.*?)\">");
-        ruleModel.setRuleDetailListM3u8("<video id=\"player\"[\\s\\S]*?</video>");
-        ruleModel.setRuleDetailDownList("<video id=\"player\"[\\s\\S]*?</video>");
-        ruleModel.setRuleDetailMain("<source src=.*?/>");
-        ruleModel.setRuleDetailTitle("label=\"(.*?)\"");
-        ruleModel.setRuleDetailLink("src=\"(.*?)\"");
+        ruleModel.setRuleResultType("类型：(.*?)<span");
+        ruleModel.setRuleResultTime("年份：(.*?)<span");
+        ruleModel.setRuleDetailCover("<img class=\"lazyload\".*?data-original=\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("<span id=\"cText\" class=\"macplus-cText\">(.*?)</span>");
+        ruleModel.setRuleDetailListSniff("<ul class=\"macplus-content__playlist[\\s\\S]*?</ul>");
+        ruleModel.setRuleSniffPattern("https://www.fenglinqiao.com/.*?index.m3u8?sign=.*?");
+        ruleModel.setRuleDetailMain("<li><a href=\".*?\">.*?</a></li>");
+        ruleModel.setRuleDetailTitle(">(.*?)</a>");
+        ruleModel.setRuleDetailLink("<a href=\"(.*?)\">");
+        ruleModel.setRuleDetailLinkHeader("https://www.waijutv.com");
         return ruleModel;
     }
-
 
 }

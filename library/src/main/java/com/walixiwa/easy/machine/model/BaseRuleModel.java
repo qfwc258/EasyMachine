@@ -36,9 +36,11 @@ public class BaseRuleModel implements Serializable {
     private String ruleDetailListM3u8;//播放地址列表规则<整个匹配>
     private String ruleDetailListShare;//分享链接列表规则<整个匹配>
     private String ruleDetailDownList;//下载链接列表规则<整个匹配>
-    private String ruleDetailParseList;//下载链接列表规则<整个匹配>
+    private String ruleDetailListSniff;//嗅探播放地址列表规则<整个匹配>
+    private String ruleSniffPattern;//嗅探目标规则
     private String ruleDetailMain;//链接&标题<整个匹配>
     private String ruleDetailTitle;//链接规则<子匹配>
+    private String ruleDetailLinkHeader;//标题规则<子匹配>
     private String ruleDetailLink;//标题规则<子匹配>
 
     private List<String> blockWords = new ArrayList<>();//屏蔽的类型或关键字
@@ -203,12 +205,22 @@ public class BaseRuleModel implements Serializable {
         this.ruleDetailDownList = ruleDetailDownList;
     }
 
-    public String getRuleDetailParseList() {
-        return ruleDetailParseList;
+    public String getRuleDetailListSniff() {
+        return ruleDetailListSniff;
     }
 
-    public void setRuleDetailParseList(String ruleDetailParseList) {
-        this.ruleDetailParseList = ruleDetailParseList;
+    public BaseRuleModel setRuleDetailListSniff(String ruleDetailListSniff) {
+        this.ruleDetailListSniff = ruleDetailListSniff;
+        return this;
+    }
+
+    public String getRuleSniffPattern() {
+        return ruleSniffPattern;
+    }
+
+    public BaseRuleModel setRuleSniffPattern(String ruleSniffPattern) {
+        this.ruleSniffPattern = ruleSniffPattern;
+        return this;
     }
 
     public String getRuleDetailMain() {
@@ -235,7 +247,14 @@ public class BaseRuleModel implements Serializable {
         this.ruleDetailLink = ruleDetailLink;
     }
 
+    public String getRuleDetailLinkHeader() {
+        return ruleDetailLinkHeader;
+    }
 
+    public BaseRuleModel setRuleDetailLinkHeader(String ruleDetailLinkHeader) {
+        this.ruleDetailLinkHeader = ruleDetailLinkHeader;
+        return this;
+    }
 
     public List<String> getBlockWords() {
         return blockWords;
@@ -269,9 +288,11 @@ public class BaseRuleModel implements Serializable {
             addParam(jsonObject, "ruleDetailListM3u8", ruleDetailListM3u8);
             addParam(jsonObject, "ruleDetailListShare", ruleDetailListShare);
             addParam(jsonObject, "ruleDetailDownList", ruleDetailDownList);
-            addParam(jsonObject, "ruleDetailParseList", ruleDetailParseList);
+            addParam(jsonObject, "ruleDetailListSniff", ruleDetailListSniff);
+            addParam(jsonObject, "ruleSniffPattern", ruleSniffPattern);
             addParam(jsonObject, "ruleDetailMain", ruleDetailMain);
             addParam(jsonObject, "ruleDetailTitle", ruleDetailTitle);
+            addParam(jsonObject, "ruleDetailLinkHeader", ruleDetailLinkHeader);
             addParam(jsonObject, "ruleDetailLink", ruleDetailLink);
             if (blockWords.size() > 0) {
                 jsonObject.put("blockWords", new JSONArray(blockWords));
@@ -341,10 +362,12 @@ public class BaseRuleModel implements Serializable {
             this.ruleDetailListM3u8 = getParam(jsonObject, "ruleDetailListM3u8");
             this.ruleDetailListShare = getParam(jsonObject, "ruleDetailListShare");
             this.ruleDetailDownList = getParam(jsonObject, "ruleDetailDownList");
-            this.ruleDetailParseList = getParam(jsonObject, "ruleDetailParseList");
+            this.ruleDetailListSniff = getParam(jsonObject, "ruleDetailListSniff");
+            this.ruleSniffPattern = getParam(jsonObject, "ruleSniffPattern");
             this.ruleDetailMain = getParam(jsonObject, "ruleDetailMain");
             this.ruleDetailTitle = getParam(jsonObject, "ruleDetailTitle");
             this.ruleDetailLink = getParam(jsonObject, "ruleDetailLink");
+            this.ruleDetailLinkHeader = getParam(jsonObject, "ruleDetailLinkHeader");
         } catch (JSONException e) {
             e.printStackTrace();
         }
