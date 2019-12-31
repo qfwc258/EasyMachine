@@ -2,6 +2,7 @@ package com.walixiwa.easy.machine.model;
 
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,7 +44,7 @@ public class BaseRuleModel implements Serializable {
     private String ruleDetailLinkHeader;//标题规则<子匹配>
     private String ruleDetailLink;//标题规则<子匹配>
 
-    private List<String> blockWords;//屏蔽的类型或关键字
+    private List<String> blockWords = new ArrayList<>();//屏蔽的类型或关键字
 
     public String getName() {
         return name;
@@ -370,10 +371,10 @@ public class BaseRuleModel implements Serializable {
             this.ruleDetailLinkHeader = getParam(jsonObject, "ruleDetailLinkHeader");
             if (jsonObject.has("blockWords")) {
                 JSONArray jsonArray = jsonObject.getJSONArray("blockWords");
-                this.blockWords = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     this.blockWords.add(jsonArray.getString(i));
                 }
+                Log.e("BaseRuleModel", "blockWords: " + blockWords);
             }
         } catch (JSONException e) {
             e.printStackTrace();
