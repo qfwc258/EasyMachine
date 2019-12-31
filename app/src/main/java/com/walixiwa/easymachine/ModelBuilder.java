@@ -682,7 +682,7 @@ public class ModelBuilder {
         ruleModel.setRuleDetailTitle("\"name\":\"(.*?)\"");
         ruleModel.setRuleDetailLink("\"purl\":\"(.*?)\"");
 
-        ruleModel.setBlockWords(Arrays.asList("伦理","情色","会员"));
+        ruleModel.setBlockWords(Arrays.asList("伦理","情色","会员免费"));
         return ruleModel;
     }
 

@@ -3,6 +3,7 @@ package com.walixiwa.easy.machine;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.walixiwa.easy.machine.model.BaseResultModel;
 import com.walixiwa.easy.machine.model.BaseRuleModel;
@@ -107,6 +108,7 @@ public class Searcher {
             resultModel.setBaseRuleModel(this.ruleModel);
             String resultList = NativeDecoder.decode(matcher.group()); //匹配整条链接结果
             List<String> blockList = this.ruleModel.getBlockWords();//过滤排除掉的分类
+            Log.e(TAG, "blockList: " + blockList);
             boolean blocked = false;
             //屏蔽指定引擎的block关键词
             if (blockList != null) {

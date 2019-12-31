@@ -19,6 +19,7 @@ import com.walixiwa.easy.machine.model.BaseDetailModel;
 import com.walixiwa.easy.machine.model.BaseResultModel;
 import com.walixiwa.easy.machine.model.BaseRuleModel;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("确认载入", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        baseRuleModel = ruleModel;
+                        baseRuleModel = new BaseRuleModel(ruleModel.toBase64Linker());
                         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                         assert clipboardManager != null;
                         clipboardManager.setPrimaryClip(ClipData.newPlainText(null, ruleModel.toBase64Linker()));
