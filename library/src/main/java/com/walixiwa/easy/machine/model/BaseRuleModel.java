@@ -43,7 +43,7 @@ public class BaseRuleModel implements Serializable {
     private String ruleDetailLinkHeader;//标题规则<子匹配>
     private String ruleDetailLink;//标题规则<子匹配>
 
-    private List<String> blockWords = new ArrayList<>();//屏蔽的类型或关键字
+    private List<String> blockWords;//屏蔽的类型或关键字
 
     public String getName() {
         return name;
@@ -294,7 +294,7 @@ public class BaseRuleModel implements Serializable {
             addParam(jsonObject, "ruleDetailTitle", ruleDetailTitle);
             addParam(jsonObject, "ruleDetailLinkHeader", ruleDetailLinkHeader);
             addParam(jsonObject, "ruleDetailLink", ruleDetailLink);
-            if (blockWords.size() > 0) {
+            if (blockWords != null && blockWords.size() > 0) {
                 jsonObject.put("blockWords", new JSONArray(blockWords));
             }
             return jsonObject.toString();
