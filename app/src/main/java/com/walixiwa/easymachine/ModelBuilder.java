@@ -352,7 +352,7 @@ public class ModelBuilder {
         ruleModel.setHtmlCharset("utf-8");
         ruleModel.setSearchUrl("http://www.gaoqingzy.com/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
         ruleModel.setRuleResultList("<ul class=\"nr\">[\\s\\S]*?</ul>");
-        ruleModel.setRuleResultTitle("class=\"name\"> &nbsp;&nbsp;&nbsp;&nbsp;(.*?)<img src");
+        ruleModel.setRuleResultTitle("class=\"name\"> &nbsp;&nbsp;&nbsp;&nbsp;(.*?)<script");
         ruleModel.setRuleResultLinkHeader("http://www.gaoqingzy.com");
         ruleModel.setRuleResultLink("<a href=\"(.*?)\"");
         ruleModel.setRuleResultType("btn_span\">(.*?)</span>");
@@ -425,7 +425,7 @@ public class ModelBuilder {
     public static BaseRuleModel buildSuBoModel(){
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("速播资源网");
-        ruleModel.setVersion("2019.12.08");
+        ruleModel.setVersion("2019.12.31");
         ruleModel.setBaseUrl("http://www.subo988.com");
         ruleModel.setReqCharset("utf-8");
         ruleModel.setHtmlCharset("utf-8");
@@ -438,7 +438,7 @@ public class ModelBuilder {
         ruleModel.setRuleResultTime("(\\d{4}-\\d{2}-\\d{2})");
 
         ruleModel.setRuleDetailCover("<img class=\"lazy\" src=\"(.*?)\" alt=\".*?\" />");
-        ruleModel.setRuleDetailDesc("<span class=\"more\" txt=\"([\\s\\S]*?)</span>");
+        ruleModel.setRuleDetailDesc("<span class=\"more\" txt=\".*?\">([\\s\\S]*?)</span>");
         ruleModel.setRuleDetailListM3u8("<h3>播放类型：subom3u8</h3>[\\s\\S]*?</ul>");
         ruleModel.setRuleDetailListShare("<h3>播放类型：suboyun</h3>[\\s\\S]*?</ul>");
         ruleModel.setRuleDetailMain("<input .*?\\$.*?</li>");
@@ -580,6 +580,59 @@ public class ModelBuilder {
         return ruleModel;
     }
 
+    public static BaseRuleModel build8KModel(){
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("8K资源网");
+        ruleModel.setVersion("2019.12.28");
+        ruleModel.setBaseUrl("https://8kzyw.com");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("https://8kzyw.com/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
+        ruleModel.setRuleResultList("<li><span class=\"tt\">[\\s\\S]*?</li>");
+        ruleModel.setRuleResultTitle("target=\"_blank\">([\\s\\S]*?)</a>");
+        ruleModel.setRuleResultLinkHeader("https://8kzyw.com");
+        ruleModel.setRuleResultLink("<a href=\"(.*?)\"");
+        ruleModel.setRuleResultType("xing_vb5\">(.*?)</span>");
+        ruleModel.setRuleResultTime("(\\d{4}-\\d{2}-\\d{2})");
+
+        ruleModel.setRuleDetailCover("<img class=\"lazy\" src=\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("<!--介绍开始-->(.*?)<!--介绍结束-->");
+        ruleModel.setRuleDetailListM3u8("<div id=\"play_1\">[\\s\\S]*?</ul>");
+        ruleModel.setRuleDetailListShare("<div id=\"play_2\">[\\s\\S]*?</ul>");
+        ruleModel.setRuleDetailMain("<li><input type=\"checkbox\"[\\s\\S]*?</li>");
+        ruleModel.setRuleDetailTitle("<a title='(.*?)'");
+        ruleModel.setRuleDetailLink("href='(.*?)'");
+        ruleModel.setBlockWords(Arrays.asList("伦理片"));
+        return ruleModel;
+    }
+
+    public static BaseRuleModel build97Model(){
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("97资源网");
+        ruleModel.setVersion("2019.12.28");
+        ruleModel.setBaseUrl("http://97ysw.vip");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("http://97ysw.vip/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
+        ruleModel.setRuleResultList("<li><span class=\"tt\">[\\s\\S]*?</li>");
+        ruleModel.setRuleResultTitle("target=\"_blank\">([\\s\\S]*?)</a>");
+        ruleModel.setRuleResultLinkHeader("http://97ysw.vip");
+        ruleModel.setRuleResultLink("<a href=\"(.*?)\"");
+        ruleModel.setRuleResultType("xing_vb5\">(.*?)</span>");
+        ruleModel.setRuleResultTime("xing_vb6\">(.*?)</span>");
+
+        ruleModel.setRuleDetailCoverHeader("http://97ysw.vip");
+        ruleModel.setRuleDetailCover("<img class=\"lazy\" src=\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("<span class=\"more\" txt=\"(.*?)</span>");
+        ruleModel.setRuleDetailListM3u8("<h3>播放类型：33uuck</h3>[\\s\\S]*?</ul>");
+        ruleModel.setRuleDetailListShare("<h3>播放类型：33uu</h3>[\\s\\S]*?</ul>");
+        ruleModel.setRuleDetailMain("<li><input type=\"checkbox\"[\\s\\S]*?</li>");
+        ruleModel.setRuleDetailTitle("/>(.*?)\\$");
+        ruleModel.setRuleDetailLink("value=\"(.*?)\"");
+        ruleModel.setBlockWords(Arrays.asList("伦理片"));
+        return ruleModel;
+    }
+
     public static BaseRuleModel build158Model(){
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("158资源网");
@@ -633,6 +686,31 @@ public class ModelBuilder {
         return ruleModel;
     }
 
+    public static BaseRuleModel buildNanGuaModel(){
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("南瓜影院");
+        ruleModel.setVersion("2019.12.26");
+        ruleModel.setBaseUrl("http://mjapp.mjomj.com");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("http://mjapp.mjomj.com/index.php/app/ios/vod/index?size=20&page=%page&key=%keyWords");
+        ruleModel.setRuleResultList("\\{\"id\"[\\s\\S]*?\\}");
+        ruleModel.setRuleResultTitle("\"name\":\"([\\s\\S]*?)\"");
+        ruleModel.setRuleResultLinkHeader("http://mjapp.mjomj.com/index.php/app/ios/vod/show?token=&id=");
+        ruleModel.setRuleResultLink("\"id\":\"(.*?)\"");
+        ruleModel.setRuleResultType("\"type\":\"(.*?)\"");
+        ruleModel.setRuleResultTime("\"info\":\"(.*?)\"");
+        ruleModel.setRuleDetailCover("\"name\":\".*?\",\"pic\":\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("\"text\":\"([\\s\\S]*?)\"");
+        ruleModel.setRuleDetailListM3u8("\"ji\":\\[[\\s\\S]*?\\]\\}\\]");
+        ruleModel.setRuleDetailMain("\\{\"id\":.*?\"\\}");
+        ruleModel.setRuleDetailTitle("\"name\":\"(.*?)\"");
+        ruleModel.setRuleDetailLink("\"purl\":\"(.*?)\"");
+
+        ruleModel.setBlockWords(Arrays.asList("伦理","情色","会员"));
+        return ruleModel;
+    }
+
 
     public static BaseRuleModel buildWaiJuWangModel(){
         BaseRuleModel ruleModel = new BaseRuleModel();
@@ -650,8 +728,8 @@ public class ModelBuilder {
         ruleModel.setRuleResultTime("年份：(.*?)<span");
         ruleModel.setRuleDetailCover("<img class=\"lazyload\".*?data-original=\"(.*?)\"");
         ruleModel.setRuleDetailDesc("<span id=\"cText\" class=\"macplus-cText\">(.*?)</span>");
-        ruleModel.setRuleDetailListSniff("<ul class=\"macplus-content__playlist[\\s\\S]*?</ul>");
-        ruleModel.setRuleSniffPattern("https://www.fenglinqiao.com/.*?index.m3u8?sign=.*?");
+        ruleModel.setRuleDetailListSniff("clearfix\" id=\"con_playlist_1\">.*?</ul>");
+        ruleModel.setRuleSniffPattern("http.*?index.m3u8\\?sign=.*?");
         ruleModel.setRuleDetailMain("<li><a href=\".*?\">.*?</a></li>");
         ruleModel.setRuleDetailTitle(">(.*?)</a>");
         ruleModel.setRuleDetailLink("<a href=\"(.*?)\">");
@@ -659,4 +737,81 @@ public class ModelBuilder {
         return ruleModel;
     }
 
+    public static BaseRuleModel build1090ysModel(){
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("1090影视");
+        ruleModel.setVersion("2019.12.28");
+        ruleModel.setBaseUrl("https://1090ys1.com");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("https://1090ys1.com/?c=search&wd=%keyWords&sort=addtime&order=desc&page=%page");
+        ruleModel.setRuleResultList("<li class=\"activeclearfix\">[\\s\\S]*?</li>");
+        ruleModel.setRuleResultTitle("title=\"(.*?)\"");
+        ruleModel.setRuleResultLinkHeader("https://1090ys1.com");
+        ruleModel.setRuleResultLink("href=\"(.*?)\"");
+        ruleModel.setRuleResultType("类型：([\\s\\S]*?)<span");
+        ruleModel.setRuleResultTime("年份：([\\s\\S]*?)</p>");
+
+        ruleModel.setRuleDetailCoverHeader("https");
+        ruleModel.setRuleDetailCover("<div class=\"stui-content__thumb\">[\\s\\S]*?data-original=\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("<span class=\"detail-content\".*?>(.*?)</span>");
+        ruleModel.setRuleDetailListSniff("<ul class=\"stui-content__playlist clearfix\">[\\s\\S]*?</ul>");
+        ruleModel.setRuleSniffPattern("(ftn\\.qq\\.com|ftn_handler)");
+        ruleModel.setRuleDetailMain("<li><a title='.*?' href='.*?' target=\"_blank\">.*?</a></li>");
+        ruleModel.setRuleDetailTitle("<a title='(.*?)'");
+        ruleModel.setRuleDetailLink("href='(.*?)'");
+        ruleModel.setRuleDetailLinkHeader("https://1090ys1.com");
+        return ruleModel;
+    }
+
+    public static BaseRuleModel buildZXZJModel(){
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("在线之家");
+        ruleModel.setVersion("2019.12.28");
+        ruleModel.setBaseUrl("https://www.zxzj.me");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("https://www.zxzj.me/vodsearch/%keyWords----------%page---.html");
+        ruleModel.setRuleResultList("<div class=\"stui-vodlist__box\">[\\s\\S]*?</h4></div>");
+        ruleModel.setRuleResultTitle("title=\"(.*?)\"");
+        ruleModel.setRuleResultLinkHeader("https://www.zxzj.me");
+        ruleModel.setRuleResultLink("<a href=\"(.*?)\"");
+        ruleModel.setRuleResultType("<span class=\"pic-text text-right\">(.*?)</span>");
+        ruleModel.setRuleResultTime("<span class=\"pic-text text-right\">(.*?)</span>");
+
+        ruleModel.setRuleDetailCover("<img class=\"lazyload\" data-original=\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("<span class=\"detail-content\".*?>(.*?)</span>");
+        ruleModel.setRuleDetailListSniff("<div class=\"stui-content__side\">[\\s\\S]*?<ul class=\"stui-vodlist clearfix\">");
+        ruleModel.setRuleSniffPattern("(ftn\\.qq\\.com|ftn_handler|189cloud)");
+        ruleModel.setRuleDetailMain("<h3>.*?</h3></div><ul class=\"stui-content__playlist clearfix\"><li><a href=\".*?\">.*?</a></li></ul>");
+        ruleModel.setRuleDetailTitle("<h3>(.*?)</h3>");
+        ruleModel.setRuleDetailLink("<a href=\"(.*?)\">");
+        ruleModel.setRuleDetailLinkHeader("https://www.zxzj.me");
+        return ruleModel;
+    }
+
+    public static BaseRuleModel buildBttWoModel(){
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("BttWo");
+        ruleModel.setVersion("2019.12.28");
+        ruleModel.setBaseUrl("https://www.bttwo.com");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("https://www.bttwo.com/page/%page?s=%keyWords");
+        ruleModel.setRuleResultList("<li><a href=\".*?\"[\\s\\S]*?<p class=\"inzhuy\">");
+        ruleModel.setRuleResultTitle("href=\".*?\">(.*?)</a></h3>");
+        ruleModel.setRuleResultLink("<a href=\"(.*?)\"");
+        ruleModel.setRuleResultType("<span class=\"zxgk\">(.*?)</span>");
+        ruleModel.setRuleResultTime("<span class=\"qb\">(.*?)</span>");
+
+        ruleModel.setRuleDetailCover("<div class=\"dyimg fl\">[\\s\\S]*?<img src=\"(.*?)\">");
+        ruleModel.setRuleDetailDesc("<div class=\"yp_context\">([\\s\\S]*?)<div id='gallery-1");
+        ruleModel.setRuleDetailListSniff("<div class=\"paly_list_btn\">[\\s\\S]*?</div>");
+        ruleModel.setRuleSniffPattern("(ftn\\.qq\\.com|ftn_handler|189cloud|index.m3u8|yunpan\\.360\\.cn)");
+        ruleModel.setRuleDetailMain("href=\".*?\">.*?</a>");
+        ruleModel.setRuleDetailTitle(">(.*?)</a>");
+        ruleModel.setRuleDetailLink("href=\"(.*?)\">");
+        ruleModel.setBlockWords(Collections.singletonList("不卡"));
+        return ruleModel;
+    }
 }

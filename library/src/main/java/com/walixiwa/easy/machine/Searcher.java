@@ -105,31 +105,31 @@ public class Searcher {
         while (matcher.find()) {
             BaseResultModel resultModel = new BaseResultModel();
             resultModel.setBaseRuleModel(this.ruleModel);
-            String resultList = matcher.group(); //匹配整条链接结果
+            String resultList = NativeDecoder.decode(matcher.group()); //匹配整条链接结果
             List<String> blockList = this.ruleModel.getBlockWords();//过滤排除掉的分类
             boolean blocked = false;
             //屏蔽指定引擎的block关键词
             if (blockList != null) {
-                for (String name : blockList) {
-                    if (resultList.contains(name) || NativeDecoder.decode(resultList).contains(name)) {
+                for (String block : blockList) {
+                    if (resultList.contains(block)) {
                         blocked = true;
                     }
                 }
             }
             //屏蔽总block关键词
             for (String name : blockWords) {
-                if (resultList.contains(name) || NativeDecoder.decode(resultList).contains(name)) {
+                if (resultList.contains(name)) {
                     blocked = true;
                 }
             }
             if (!blocked) {
-                resultModel.setResultTitle(matchString(resultList, this.ruleModel.getRuleResultTitle()));
+                resultModel.setResultTitle(matchString(matcher.group(), this.ruleModel.getRuleResultTitle()));
                 String linkHeader = this.ruleModel.getRuleResultLinkHeader();
-                String link = matchString(resultList, this.ruleModel.getRuleResultLink());
+                String link = matchString(matcher.group(), this.ruleModel.getRuleResultLink());
                 link = TextUtils.isEmpty(linkHeader) ? link : linkHeader + link;
                 resultModel.setResultLink(link);
-                resultModel.setResultTime(matchString(resultList, this.ruleModel.getRuleResultTime()));
-                resultModel.setResultType(matchString(resultList, this.ruleModel.getRuleResultType()));
+                resultModel.setResultTime(matchString(matcher.group(), this.ruleModel.getRuleResultTime()));
+                resultModel.setResultType(matchString(matcher.group(), this.ruleModel.getRuleResultType()));
                 resultModels.add(resultModel);
             }
         }

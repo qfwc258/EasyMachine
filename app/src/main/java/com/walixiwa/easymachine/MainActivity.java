@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showBuilderDialog() {
-        final BaseRuleModel ruleModel = ModelBuilder.buildWaiJuWangModel();
+        final BaseRuleModel ruleModel = ModelBuilder.buildAiMeiJuModel();
         new AlertDialog.Builder(this)
                 .setTitle("载入引擎")
                 .setMessage(ruleModel.toBase64Linker())
