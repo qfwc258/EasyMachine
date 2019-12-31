@@ -370,6 +370,7 @@ public class BaseRuleModel implements Serializable {
             this.ruleDetailLinkHeader = getParam(jsonObject, "ruleDetailLinkHeader");
             if (jsonObject.has("blockWords")) {
                 JSONArray jsonArray = jsonObject.getJSONArray("blockWords");
+                this.blockWords = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     this.blockWords.add(jsonArray.getString(i));
                 }
