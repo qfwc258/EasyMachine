@@ -23,8 +23,10 @@ public class BaseRuleModel implements Serializable {
     private String htmlCharset;//返回编码
     private String userAgent;//浏览器UA
     private String baseUrl;//域名来源
-    private String searchUrl;//搜索链接：http://www.xxx.com/search.php?keyWords=%s&page=%s
+    private String searchUrl;//搜索链接：http://www.xxx.com/search.php?keyWords=%keyWords&page=%page
     private String ruleResultList;//搜索结果列表规则 <整个匹配>
+    private String ruleResultCoverHeader;//详情页链接前缀
+    private String ruleResultCover;//搜索结果详情页链接规则<子匹配>
     private String ruleResultLinkHeader;//详情页链接前缀
     private String ruleResultLink;//搜索结果详情页链接规则<子匹配>
     private String ruleResultTitle;//搜索结果标题<子匹配>
@@ -108,6 +110,24 @@ public class BaseRuleModel implements Serializable {
 
     public void setRuleResultList(String ruleResultList) {
         this.ruleResultList = ruleResultList;
+    }
+
+    public String getRuleResultCoverHeader() {
+        return ruleResultCoverHeader;
+    }
+
+    public BaseRuleModel setRuleResultCoverHeader(String ruleResultCoverHeader) {
+        this.ruleResultCoverHeader = ruleResultCoverHeader;
+        return this;
+    }
+
+    public String getRuleResultCover() {
+        return ruleResultCover;
+    }
+
+    public BaseRuleModel setRuleResultCover(String ruleResultCover) {
+        this.ruleResultCover = ruleResultCover;
+        return this;
     }
 
     public String getRuleResultLinkHeader() {
@@ -277,6 +297,8 @@ public class BaseRuleModel implements Serializable {
             addParam(jsonObject, "baseUrl", baseUrl);
             addParam(jsonObject, "searchUrl", searchUrl);
             addParam(jsonObject, "ruleResultList", ruleResultList);
+            addParam(jsonObject, "ruleResultCoverHeader", ruleResultCoverHeader);
+            addParam(jsonObject, "ruleResultCover", ruleResultCover);
             addParam(jsonObject, "ruleResultLinkHeader", ruleResultLinkHeader);
             addParam(jsonObject, "ruleResultLink", ruleResultLink);
             addParam(jsonObject, "ruleResultTitle", ruleResultTitle);
@@ -349,6 +371,8 @@ public class BaseRuleModel implements Serializable {
             this.baseUrl = getParam(jsonObject, "baseUrl");
             this.searchUrl = getParam(jsonObject, "searchUrl");
             this.ruleResultList = getParam(jsonObject, "ruleResultList");
+            this.ruleResultCoverHeader = getParam(jsonObject, "ruleResultCoverHeader");
+            this.ruleResultCover = getParam(jsonObject, "ruleResultCover");
             this.ruleResultLinkHeader = getParam(jsonObject, "ruleResultLinkHeader");
             this.ruleResultLink = getParam(jsonObject, "ruleResultLink");
             this.ruleResultTitle = getParam(jsonObject, "ruleResultTitle");

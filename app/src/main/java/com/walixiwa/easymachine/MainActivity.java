@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showBuilderDialog() {
-        final BaseRuleModel ruleModel = ModelBuilder.buildAiMeiJuModel();
+        final BaseRuleModel ruleModel = ModelBuilder.build1717Model();
 
         new AlertDialog.Builder(this)
                 .setTitle("载入引擎")
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("确认载入", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        baseRuleModel = new BaseRuleModel(ruleModel.toBase64Linker());
+                        baseRuleModel = ruleModel;
                         ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                         assert clipboardManager != null;
                         clipboardManager.setPrimaryClip(ClipData.newPlainText(null, ruleModel.toBase64Linker()));
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResult(List<BaseResultModel> results) {
-                Log.e("result", "size:"+results.size());
+                Log.e("result", "size:" + results.size());
                 for (int i = 0; i < results.size(); i++) {
                     Log.e("result", results.get(i).toJson());
                 }

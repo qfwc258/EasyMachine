@@ -1,9 +1,11 @@
 package com.walixiwa.easy.machine;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
+import android.webkit.WebSettings;
 
 import com.walixiwa.easy.machine.model.BaseResultModel;
 import com.walixiwa.easy.machine.model.BaseRuleModel;
@@ -101,13 +103,16 @@ public class Searcher {
      * @param html
      */
     private void parseSource(String html) {
-        Pattern pattern = Pattern.compile(this.ruleModel.getRuleResultList(), Pattern.CASE_INSENSITIVE);//匹配整条链接
+        //匹配整条链接
+        Pattern pattern = Pattern.compile(this.ruleModel.getRuleResultList(), Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(html);
         while (matcher.find()) {
             BaseResultModel resultModel = new BaseResultModel();
+            //匹配整条链接结果
             resultModel.setBaseRuleModel(this.ruleModel);
-            String resultList = NativeDecoder.decode(matcher.group()); //匹配整条链接结果
-            List<String> blockList = this.ruleModel.getBlockWords();//过滤排除掉的分类
+            String resultList = NativeDecoder.decode(matcher.group());
+            //过滤排除掉的分类
+            List<String> blockList = this.ruleModel.getBlockWords();
             Log.e(TAG, "blockList: " + blockList);
             boolean blocked = false;
             //屏蔽指定引擎的block关键词
@@ -126,10 +131,26 @@ public class Searcher {
             }
             if (!blocked) {
                 resultModel.setResultTitle(matchString(matcher.group(), this.ruleModel.getRuleResultTitle()));
-                String linkHeader = this.ruleModel.getRuleResultLinkHeader();
-                String link = matchString(matcher.group(), this.ruleModel.getRuleResultLink());
-                link = TextUtils.isEmpty(linkHeader) ? link : linkHeader + link;
-                resultModel.setResultLink(link);
+                if (!TextUtils.isEmpty(this.ruleModel.getRuleResultCover())) {
+                    String coverHeader = this.ruleModel.getRuleResultCoverHeader();
+                    String cover = matchString(matcher.group(), this.ruleModel.getRuleResultCover());
+                    if (!TextUtils.isEmpty(coverHeader)) {
+                        cover = coverHeader + cover;
+                    }
+                    resultModel.setResultCover(cover);
+                }
+                if (!TextUtils.isEmpty(this.ruleModel.getRuleResultLink())) {
+                    String linkHeader = this.ruleModel.getRuleResultLinkHeader();
+                    String link = matchString(matcher.group(), this.ruleModel.getRuleResultLink());
+                    if (!TextUtils.isEmpty(linkHeader)) {
+                        if (linkHeader.contains("%id")) {
+                            link = linkHeader.replace("%id", link);
+                        } else {
+                            link = linkHeader + link;
+                        }
+                    }
+                    resultModel.setResultLink(link);
+                }
                 resultModel.setResultTime(matchString(matcher.group(), this.ruleModel.getRuleResultTime()));
                 resultModel.setResultType(matchString(matcher.group(), this.ruleModel.getRuleResultType()));
                 resultModels.add(resultModel);
@@ -193,4 +214,5 @@ public class Searcher {
         }
         return wd == null ? str : wd.replace("+", "%20");
     }
+
 }

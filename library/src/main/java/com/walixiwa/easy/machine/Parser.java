@@ -162,8 +162,16 @@ public class Parser {
     }
 
     public interface CallBack {
+        /**
+         * 解析成功，返回详情Model
+         * @param resultModel
+         */
         void onSuccess(BaseDetailModel resultModel);
 
+        /**
+         * 解析失败，返回失败原因
+         * @param msg
+         */
         void onFail(String msg);
     }
 

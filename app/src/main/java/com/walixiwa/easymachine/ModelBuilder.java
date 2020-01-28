@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ModelBuilder {
-    public static BaseRuleModel buildZuiDaModel(){
+    public static BaseRuleModel buildZuiDaModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("最大资源网");
         ruleModel.setVersion("2019.12.01/20:21");
@@ -28,11 +28,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li>.*?checkbox.*?</li>");
         ruleModel.setRuleDetailTitle("checked=\"\" />(.*?)\\$");
         ruleModel.setRuleDetailLink("value=\"(.*?)\"");
-        ruleModel.setBlockWords(Arrays.asList("福利片","伦理片"));
+        ruleModel.setBlockWords(Arrays.asList("福利片", "伦理片"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildBaJieModel(){
+    public static BaseRuleModel buildBaJieModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("八戒资源网");
         ruleModel.setVersion("2019.11.23");
@@ -53,11 +53,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li>.*?checkbox.*?</li>");
         ruleModel.setRuleDetailTitle("value=\"(.*?)\\$.*?\"");
         ruleModel.setRuleDetailLink("value=\".*?\\$(.*?)\"");
-        ruleModel.setBlockWords(Arrays.asList("福利片","伦理片"));
+        ruleModel.setBlockWords(Arrays.asList("福利片", "伦理片"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildVodSeeModel(){
+    public static BaseRuleModel buildVodSeeModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("卧龙资源网");
         ruleModel.setVersion("2019.11.23");
@@ -81,7 +81,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel buildKuYunModel(){
+    public static BaseRuleModel buildKuYunModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("酷云资源网");
         ruleModel.setVersion("2019.11.25");
@@ -107,7 +107,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel buildOkYunModel(){
+    public static BaseRuleModel buildOkYunModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("Ok资源网");
         ruleModel.setVersion("2019.12.26");
@@ -129,11 +129,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li><input type=\"checkbox\"[\\s\\S]*?</li>");
         ruleModel.setRuleDetailTitle("/>(.*?)\\$");
         ruleModel.setRuleDetailLink("value=\"(.*?)\"");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","福利片"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "福利片"));
         return ruleModel;
     }
 
-    public static BaseRuleModel build605Model(){
+    public static BaseRuleModel build605Model() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("605资源网");
         ruleModel.setVersion("2019.12.08");
@@ -155,11 +155,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li><input type=\"checkbox\"[\\s\\S]*?</li>");
         ruleModel.setRuleDetailTitle("/>(.*?)\\$");
         ruleModel.setRuleDetailLink("value=\"(.*?)\"");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","福利片"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "福利片"));
         return ruleModel;
     }
 
-    public static BaseRuleModel build1886Model(){
+    public static BaseRuleModel build1886Model() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("1886资源网");
         ruleModel.setVersion("2019.12.08");
@@ -181,11 +181,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li><input type=\"checkbox\"[\\s\\S]*?</li>");
         ruleModel.setRuleDetailTitle("value=\"(.*?)\\$");
         ruleModel.setRuleDetailLink("value=\".*?\\$(.*?)\"");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","福利片","韩国"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "福利片", "韩国"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildReBoModel(){
+    public static BaseRuleModel buildReBoModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("热播资源网");
         ruleModel.setVersion("2019.12.08");
@@ -212,7 +212,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel build123KuModel(){
+    public static BaseRuleModel build123KuModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("123资源网");
         ruleModel.setVersion("2019.12.08");
@@ -238,17 +238,17 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel build209Model(){
+    public static BaseRuleModel build209Model() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("209资源网");
-        ruleModel.setVersion("2019.12.08");
-        ruleModel.setBaseUrl("http://www.209zy.com");
+        ruleModel.setVersion("2019.12.31");
+        ruleModel.setBaseUrl("http://www.156zy.me");
         ruleModel.setReqCharset("utf-8");
         ruleModel.setHtmlCharset("utf-8");
-        ruleModel.setSearchUrl("http://www.209zy.com/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
+        ruleModel.setSearchUrl("http://www.156zy.me/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
         ruleModel.setRuleResultList("<li>.*?xing_vb4.*?</li>");
         ruleModel.setRuleResultTitle("_blank\">(.*?)</a>");
-        ruleModel.setRuleResultLinkHeader("http://www.209ZY.com");
+        ruleModel.setRuleResultLinkHeader("http://www.156zy.me");
         ruleModel.setRuleResultLink("xing_vb4\"><a href=\"(.*?)\"");
         ruleModel.setRuleResultType("xing_vb5\">(.*?)</span>");
         ruleModel.setRuleResultTime("(\\d{4}-\\d{2}-\\d{2})");
@@ -264,7 +264,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel buildBaiWanModel(){
+    public static BaseRuleModel buildBaiWanModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("百万资源网");
         ruleModel.setVersion("2019.12.08");
@@ -287,11 +287,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<input .*?\\$.*?</li>");
         ruleModel.setRuleDetailTitle("/>(.*?)\\$");
         ruleModel.setRuleDetailLink("\\$(.*?)</li>");
-        ruleModel.setBlockWords(Arrays.asList("伦理片", "美女视频","VIP视频秀"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "美女视频", "VIP视频秀"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildChaoJiModel(){
+    public static BaseRuleModel buildChaoJiModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("超级资源网");
         ruleModel.setVersion("2019.12.08");
@@ -313,11 +313,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<input.*?value=.*?checked.*?</li>");
         ruleModel.setRuleDetailTitle("target=\"_blank\">(.*?)\\$");
         ruleModel.setRuleDetailLink("\\$(.*?)</a></li>");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","福利视频"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "福利视频"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildDouBanModel(){
+    public static BaseRuleModel buildDouBanModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("豆瓣资源网");
         ruleModel.setVersion("2019.12.08");
@@ -343,7 +343,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel buildGaoQingModel(){
+    public static BaseRuleModel buildGaoQingModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("高清资源网");
         ruleModel.setVersion("2019.12.08");
@@ -352,7 +352,7 @@ public class ModelBuilder {
         ruleModel.setHtmlCharset("utf-8");
         ruleModel.setSearchUrl("http://www.gaoqingzy.com/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
         ruleModel.setRuleResultList("<ul class=\"nr\">[\\s\\S]*?</ul>");
-        ruleModel.setRuleResultTitle("class=\"name\"> &nbsp;&nbsp;&nbsp;&nbsp;(.*?)<script");
+        ruleModel.setRuleResultTitle("class=\"name\"> &nbsp;&nbsp;&nbsp;&nbsp;(.*?)<img src=");
         ruleModel.setRuleResultLinkHeader("http://www.gaoqingzy.com");
         ruleModel.setRuleResultLink("<a href=\"(.*?)\"");
         ruleModel.setRuleResultType("btn_span\">(.*?)</span>");
@@ -365,11 +365,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li>.*?\\$.*?</li>");
         ruleModel.setRuleDetailTitle(">(.*?)\\$");
         ruleModel.setRuleDetailLink("\\$(.*?)</li>");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","美女写真"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "美女写真"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildHaKuModel(){
+    public static BaseRuleModel buildHaKuModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("哈酷资源网");
         ruleModel.setVersion("2019.12.08");
@@ -391,11 +391,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li><a href=\".*?\" target=\"_blank\">.*?\\$.*?</a></li>");
         ruleModel.setRuleDetailTitle("target=\"_blank\">(.*?)\\$");
         ruleModel.setRuleDetailLink("\\$(.*?)</a>");
-        ruleModel.setBlockWords(Arrays.asList("写真","伦理"));
+        ruleModel.setBlockWords(Arrays.asList("写真", "伦理"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildSouLeModel(){
+    public static BaseRuleModel buildSouLeModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("搜乐资源网");
         ruleModel.setVersion("2019.12.08");
@@ -422,7 +422,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel buildSuBoModel(){
+    public static BaseRuleModel buildSuBoModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("速播资源网");
         ruleModel.setVersion("2019.12.31");
@@ -448,7 +448,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel buildMaHuaModel(){
+    public static BaseRuleModel buildMaHuaModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("麻花资源网");
         ruleModel.setVersion("2019.12.08");
@@ -470,11 +470,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<input .*?\\$.*?</li>");
         ruleModel.setRuleDetailTitle("/>(.*?)\\$");
         ruleModel.setRuleDetailLink("\\$(.*?)</li>");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","理论片", "福利片"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "理论片", "福利片"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildMiaoBoModel(){
+    public static BaseRuleModel buildMiaoBoModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("秒播资源网");
         ruleModel.setVersion("2019.12.08");
@@ -497,11 +497,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<input.*?value=.*?checked.*?</li>");
         ruleModel.setRuleDetailTitle("target=\"_blank\" />(.*?)\\$");
         ruleModel.setRuleDetailLink("\\$(.*?)</li>");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","福利视频"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "福利视频"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildKuBoModel(){
+    public static BaseRuleModel buildKuBoModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("酷播资源网");
         ruleModel.setVersion("2019.12.08");
@@ -524,11 +524,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<input .*?\\$.*?</li>");
         ruleModel.setRuleDetailTitle("/>(.*?)\\$");
         ruleModel.setRuleDetailLink("\\$(.*?)</li>");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","福利片"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "福利片"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildNiuNiuMeiJuModel(){
+    public static BaseRuleModel buildNiuNiuMeiJuModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("牛牛美剧");
         ruleModel.setVersion("2019.12.09");
@@ -550,11 +550,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li><input type=\"checkbox\".*?\\$.*?</li>");
         ruleModel.setRuleDetailTitle("value=\"(.*?)\\$");
         ruleModel.setRuleDetailLink("value=\".*?\\$(.*?)\"");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","福利片"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "福利片"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildYongJiuModel(){
+    public static BaseRuleModel buildYongJiuModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("永久资源网");
         ruleModel.setVersion("2019.12.09");
@@ -576,11 +576,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li><input type=\"checkbox\".*?\\$.*?</li>");
         ruleModel.setRuleDetailTitle("value=\"(.*?)\\$");
         ruleModel.setRuleDetailLink("value=\".*?\\$(.*?)\"");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","嫩妹写真"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "嫩妹写真"));
         return ruleModel;
     }
 
-    public static BaseRuleModel build8KModel(){
+    public static BaseRuleModel build8KModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("8K资源网");
         ruleModel.setVersion("2019.12.28");
@@ -606,7 +606,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel build97Model(){
+    public static BaseRuleModel build97Model() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("97资源网");
         ruleModel.setVersion("2019.12.28");
@@ -633,7 +633,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel build158Model(){
+    public static BaseRuleModel build158Model() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("158资源网");
         ruleModel.setVersion("2019.12.09");
@@ -655,13 +655,39 @@ public class ModelBuilder {
         ruleModel.setRuleDetailMain("<li><input type=\"checkbox\"[\\s\\S]*?</li>");
         ruleModel.setRuleDetailTitle("<a title='(.*?)'");
         ruleModel.setRuleDetailLink("href='(.*?)'");
-        ruleModel.setBlockWords(Arrays.asList("伦理片","嫩妹写真"));
+        ruleModel.setBlockWords(Arrays.asList("伦理片", "嫩妹写真"));
+        return ruleModel;
+    }
+
+    public static BaseRuleModel build1717Model() {
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("1717资源网");
+        ruleModel.setVersion("2019.01.22");
+        ruleModel.setBaseUrl("http://zy.itono.cn");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("http://zy.itono.cn/index.php?m=vod-search-pg-%page-wd-%keyWords.html");
+        ruleModel.setRuleResultList("<li>.*?xing_vb4.*?</li>");
+        ruleModel.setRuleResultTitle("target=\"_blank\">(.*?)</a>");
+        ruleModel.setRuleResultLinkHeader("http://zy.itono.cn");
+        ruleModel.setRuleResultLink("<a href=\"(.*?)\"");
+        ruleModel.setRuleResultType("xing_vb5\">(.*?)</span>");
+        ruleModel.setRuleResultTime("xing_vb6\">(.*?)</span>");
+
+        ruleModel.setRuleDetailCoverHeader("http://zy.itono.cn");
+        ruleModel.setRuleDetailCover("<img class=\"lazy\" src=\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("<!-- <span class=\"more\" txt=\"(.*?)</span>  -->");
+        ruleModel.setRuleDetailListSniff("<li><input type=\"checkbox\"[\\s\\S]*?</li>");
+        ruleModel.setRuleSniffPattern("(/m3u8/.*?\\.m3u8|^((?!url=).)*\\.m3u8|mp4\\?vkey|ykm3u8|\\.mp4\\?k=)");
+        ruleModel.setRuleDetailMain("checked=\"\" />.*?\\$.*?</li>");
+        ruleModel.setRuleDetailTitle("/>(.*?)\\$");
+        ruleModel.setRuleDetailLinkHeader("https://www.1717yun.com/jiexi/?url=");
+        ruleModel.setRuleDetailLink("\\$(.*?)</li>");
         return ruleModel;
     }
 
 
-
-    public static BaseRuleModel buildAiMeiJuModel(){
+    public static BaseRuleModel buildAiMeiJuModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("爱美剧");
         ruleModel.setVersion("2019.12.26");
@@ -682,11 +708,11 @@ public class ModelBuilder {
         ruleModel.setRuleDetailTitle("\"name\":\"(.*?)\"");
         ruleModel.setRuleDetailLink("\"purl\":\"(.*?)\"");
 
-        ruleModel.setBlockWords(Arrays.asList("伦理","情色","会员免费"));
+        ruleModel.setBlockWords(Arrays.asList("伦理", "情色", "会员免费"));
         return ruleModel;
     }
 
-    public static BaseRuleModel buildNanGuaModel(){
+    public static BaseRuleModel buildNanGuaModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("南瓜影院");
         ruleModel.setVersion("2019.12.26");
@@ -707,12 +733,12 @@ public class ModelBuilder {
         ruleModel.setRuleDetailTitle("\"name\":\"(.*?)\"");
         ruleModel.setRuleDetailLink("\"purl\":\"(.*?)\"");
 
-        ruleModel.setBlockWords(Arrays.asList("伦理","情色","会员"));
+        ruleModel.setBlockWords(Arrays.asList("伦理", "情色", "会员"));
         return ruleModel;
     }
 
 
-    public static BaseRuleModel buildWaiJuWangModel(){
+    public static BaseRuleModel buildWaiJuWangModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("外剧网");
         ruleModel.setVersion("2019.12.28");
@@ -737,7 +763,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel build1090ysModel(){
+    public static BaseRuleModel build1090ysModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("1090影视");
         ruleModel.setVersion("2019.12.28");
@@ -764,7 +790,33 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel buildZXZJModel(){
+    public static BaseRuleModel buildFengGouModel() {
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("疯狗电影");
+        ruleModel.setVersion("2019.01.07");
+        ruleModel.setBaseUrl("https://www.fenggoudy.com/");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("https://www.fenggoudy.com/vod-search-wd-%keyWords-p-%page.html");
+        ruleModel.setRuleResultList("<div class=\"v_pic\">[\\s\\S]*?<div class=\"v_txt\">[\\s\\S]*?</div>");
+        ruleModel.setRuleResultTitle("title=\"(.*?)\"");
+        ruleModel.setRuleResultLinkHeader("https://www.fenggoudy.com");
+        ruleModel.setRuleResultLink("v_playBtn\" href=\"(.*?)\"");
+        ruleModel.setRuleResultType("class=\"v_bottom_tips\">([\\s\\S]*?)</span>");
+        ruleModel.setRuleResultTime("<span class=\"s_des\">(.*?)</span>");
+
+        ruleModel.setRuleDetailCover("<img src=\".*?\" data-src=\"(.*?)\"");
+        ruleModel.setRuleDetailDesc("<span class=\"s_all\">([\\s\\S]*?)</span>");
+        ruleModel.setRuleDetailListSniff("<div class='v_con_box'>([\\s\\S]*?)</div>");
+        ruleModel.setRuleSniffPattern("(ftn\\.qq\\.com|ftn_handler|^((?!url=).)*\\.m3u8|^((?!\\.php).)*\\.mp4)");
+        ruleModel.setRuleDetailMain("<a href=\".*?\".*?data-id=\".*?\" target=\"_blank\">.*?<em class=\"num\">.*?</em>");
+        ruleModel.setRuleDetailTitle("<em class=\"num\">(.*?)</em>");
+        ruleModel.setRuleDetailLink("<a href=\"(.*?)\"");
+        ruleModel.setRuleDetailLinkHeader("https://m.fenggoudy.net");
+        return ruleModel;
+    }
+
+    public static BaseRuleModel buildZXZJModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("在线之家");
         ruleModel.setVersion("2019.12.28");
@@ -790,7 +842,7 @@ public class ModelBuilder {
         return ruleModel;
     }
 
-    public static BaseRuleModel buildBttWoModel(){
+    public static BaseRuleModel buildBttWoModel() {
         BaseRuleModel ruleModel = new BaseRuleModel();
         ruleModel.setName("BttWo");
         ruleModel.setVersion("2019.12.28");
@@ -812,6 +864,81 @@ public class ModelBuilder {
         ruleModel.setRuleDetailTitle(">(.*?)</a>");
         ruleModel.setRuleDetailLink("href=\"(.*?)\">");
         ruleModel.setBlockWords(Collections.singletonList("不卡"));
+        return ruleModel;
+    }
+
+    public static BaseRuleModel buildMgtvModel() {
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("芒果TV");
+        ruleModel.setVersion("2020.01.02");
+        ruleModel.setBaseUrl("https://www.mgtv.com");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("utf-8");
+        ruleModel.setSearchUrl("http://121.239.60.117:2333/run/mgtvs.php?id=%keyWords");
+        ruleModel.setRuleResultList("<tr>.*?</tr>");
+        ruleModel.setRuleResultTitle("<title>(.*?)</title>");
+        ruleModel.setRuleResultLinkHeader("http://121.239.60.117:2333/run/mgtv.php?id=");
+        ruleModel.setRuleResultLink("/b/(.*?)/.*?.html");
+        ruleModel.setRuleResultTime("<info>(.*?)</info>");
+
+        ruleModel.setRuleDetailCover("<cover>(.*?)</cover>");
+
+        ruleModel.setRuleDetailListSniff("<table>.*?</table>");
+        ruleModel.setRuleSniffPattern("(\\.m3u8|titan\\.hitv|titan\\.mgtv)");
+        ruleModel.setRuleDetailMain("<tr>.*?</tr>");
+        ruleModel.setRuleDetailTitle("<title>(.*?)</title>");
+        ruleModel.setRuleDetailLink("<url>(.*?)</url>");
+        return ruleModel;
+    }
+
+    public static BaseRuleModel buildXXPlayModel() {
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("小小影视");
+        ruleModel.setVersion("2020.01.03");
+        ruleModel.setBaseUrl("https://www.xx.com");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("gbk");
+        ruleModel.setSearchUrl("http://walixiwa.club:455/play/xxs.php?id=%keyWords");
+        ruleModel.setRuleResultList("<tr>.*?</tr>");
+        ruleModel.setRuleResultTitle("<title>(.*?)</title>");
+        ruleModel.setRuleResultLinkHeader("http://walixiwa.club:455/play/xx.php?id=");
+        ruleModel.setRuleResultLink("<id>(.*?)</id>");
+        ruleModel.setRuleResultTime("<time>(.*?)</time>");
+        ruleModel.setRuleResultType("<type>(.*?)</type>");
+
+        ruleModel.setRuleDetailCover("<cover>(.*?)</cover>");
+
+        ruleModel.setRuleDetailListM3u8("<table>.*?</table>");
+
+        ruleModel.setRuleDetailMain("<tr>.*?</tr>");
+        ruleModel.setRuleDetailTitle("<title>(.*?)</title>");
+        ruleModel.setRuleDetailLink("<id>(.*?)</id>");
+        return ruleModel;
+    }
+
+    public static BaseRuleModel buildNGPlayModel() {
+        BaseRuleModel ruleModel = new BaseRuleModel();
+        ruleModel.setName("南瓜影视");
+        ruleModel.setVersion("2020.01.03");
+        ruleModel.setBaseUrl("https://www.ng.com");
+        ruleModel.setReqCharset("utf-8");
+        ruleModel.setHtmlCharset("gbk");
+        ruleModel.setSearchUrl("http://walixiwa.club:455/play/ngs.php?id=%keyWords");
+        ruleModel.setRuleResultList("<tr>.*?</tr>");
+        ruleModel.setRuleResultTitle("<title>(.*?)</title>");
+        ruleModel.setRuleResultLinkHeader("http://walixiwa.club:455/play/ng.php?id=");
+        ruleModel.setRuleResultLink("<id>(.*?)</id>");
+        ruleModel.setRuleResultTime("<time>(.*?)</time>");
+        ruleModel.setRuleResultType("<type>(.*?)</type>");
+
+        ruleModel.setRuleDetailCover("<cover>(.*?)</cover>");
+
+        ruleModel.setRuleDetailListM3u8("<table>.*?</table>");
+
+        ruleModel.setRuleDetailMain("<tr>.*?</tr>");
+        ruleModel.setRuleDetailTitle("<title>(.*?)</title>");
+        ruleModel.setRuleDetailLink("<id>(.*?)</id>");
+        ruleModel.setBlockWords(Arrays.asList("妈妈", "韩国", "情色", "小姨", "伦理"));
         return ruleModel;
     }
 }

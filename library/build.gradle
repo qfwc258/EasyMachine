@@ -21,6 +21,11 @@ android {
         }
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -29,4 +34,21 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.1.0'
     //谷歌快速json支持库
     implementation 'com.google.code.gson:gson:2.8.5'
+}
+
+
+// 发布maven配置
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = 'com.walixiwa.easy.machine' // 唯一标识（通常为模块包名，也可以任意）
+            pom.artifactId = "MACHINE" // 项目名称（通常为类库模块名称，也可以任意）
+            pom.version = "v1.0.9" // 版本号
+            pom.packaging = 'aar'
+            repository(url: uri("D:/Maven/repo")) // 配置本地仓库路径，项目根目录下的repository目录中
+            println("仓库路径： " + uri("D:/Maven/repo"))
+        }
+    }
 }

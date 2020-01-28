@@ -1,5 +1,6 @@
 package com.walixiwa.easy.machine.util;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -23,11 +25,13 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.ResponseBody;
 
 /**
  * 多线程网络请求队列
+ * @author Administrator
  */
 public class MultiRequest {
     private String url;
@@ -93,6 +97,7 @@ public class MultiRequest {
         okHttpClient.connectTimeout(timeOut, TimeUnit.SECONDS);
         okHttpClient.readTimeout(timeOut, TimeUnit.SECONDS);
         okHttpClient.hostnameVerifier(new HostnameVerifier() {
+            @SuppressLint("BadHostnameVerifier")
             @Override
             public boolean verify(String s, SSLSession sslSession) {
                 return true;//关闭ssl校验
@@ -117,6 +122,7 @@ public class MultiRequest {
                         if (responseBody != null) {
                             byte[] bytes = responseBody.bytes();
                             String result = new String(bytes, TextUtils.isEmpty(charset) ? "utf-8" : charset);
+                            Log.e("info", "onResponse: "+result);
                             onSuccess(callBack, result);
                         } else {
                             onFail(callBack, "返回内容为空");
@@ -125,10 +131,9 @@ public class MultiRequest {
                         onFail(callBack, e.toString());
                     }
                 } else {
-                    onFail(callBack, "请求失败");
+                    onFail(callBack, "请求失败:" + response.message());
                 }
             }
-
         });
     }
 
@@ -162,12 +167,13 @@ public class MultiRequest {
 
 
     //okHttp3添加信任所有证书
-
+    @SuppressLint("TrustAllX509TrustManager")
     private static OkHttpClient getUnsafeOkHttpClient() {
 
         try {
             final TrustManager[] trustAllCerts = new TrustManager[]{
                     new X509TrustManager() {
+
                         @Override
                         public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {
                         }
@@ -187,9 +193,11 @@ public class MultiRequest {
             sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
             final javax.net.ssl.SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            //noinspection deprecation
             builder.sslSocketFactory(sslSocketFactory);
 
             builder.hostnameVerifier(new HostnameVerifier() {
+                @SuppressLint("BadHostnameVerifier")
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
                     return true;

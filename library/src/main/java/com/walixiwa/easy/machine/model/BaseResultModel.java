@@ -10,11 +10,21 @@ import java.io.Serializable;
  * 搜索结果Model
  */
 public class BaseResultModel implements Serializable {
+    private String resultCover;//搜索详情标题
     private String resultLink;//搜索结果详情页链接规则
     private String resultTitle;//搜索结果标题
     private String resultType;//类型
     private String resultTime;//时间
     private BaseRuleModel baseRuleModel;
+
+    public String getResultCover() {
+        return resultCover;
+    }
+
+    public BaseResultModel setResultCover(String resultCover) {
+        this.resultCover = resultCover;
+        return this;
+    }
 
     public String getResultLink() {
         return resultLink;

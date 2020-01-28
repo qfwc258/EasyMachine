@@ -7,12 +7,13 @@ import java.util.regex.Pattern;
 
 /**
  * Native解码
+ * @author Administrator
  */
 public class NativeDecoder {
+    private static Pattern pattern = Pattern.compile("\\\\u([0-9a-fA-F]{4})");
     public static String decode(String str) {
         Charset set = Charset.forName("UTF-16");
-        Pattern p = Pattern.compile("\\\\u([0-9a-fA-F]{4})");
-        Matcher m = p.matcher(str);
+        Matcher m = pattern.matcher(str);
         int start = 0;
         int start2;
         StringBuilder sb = new StringBuilder();
